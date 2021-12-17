@@ -19,7 +19,4 @@ public class Diagnos {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "treatment_id")
-    private Treatment treatment;
 }

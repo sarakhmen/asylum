@@ -29,10 +29,10 @@ public class Doctor {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany
+    @OneToMany(mappedBy = "doctor")
     private Set<Treatment> treatments;
 
-    @OneToMany
+    @OneToMany(mappedBy = "doctor")
     private Set<Appointment> appointments;
 
 }

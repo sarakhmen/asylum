@@ -17,6 +17,6 @@ public class Department {
     @Column(name = "name")
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "department")
     private Set<Doctor> doctors;
 }

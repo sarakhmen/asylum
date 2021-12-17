@@ -34,7 +34,10 @@ public class Treatment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "treatment_diagnos",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "diagnos_id"))
     private Set<Diagnos> diagnoses;
 
     @ManyToOne(cascade = CascadeType.ALL)

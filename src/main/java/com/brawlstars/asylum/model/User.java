@@ -58,12 +58,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @OneToOne
+    @OneToOne(mappedBy = "user")
     private Doctor doctor;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private Set<Treatment> treatments;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private Set<Appointment> appointments;
 }
