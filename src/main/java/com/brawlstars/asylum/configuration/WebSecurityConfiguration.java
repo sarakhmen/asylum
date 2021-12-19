@@ -61,6 +61,5 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true);
     }
-
 }
 
