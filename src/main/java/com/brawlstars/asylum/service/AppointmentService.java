@@ -5,7 +5,9 @@ import com.brawlstars.asylum.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppointmentService {
@@ -19,6 +21,10 @@ public class AppointmentService {
 
     public List<Appointment> getAllAppointmentsByUserEmail(String email) {
         return appointmentRepository.findAllByUserEmail(email);
+    }
+
+    public Optional<Appointment> getAppointmentByDate(String doctorEmail, Calendar date) {
+        return appointmentRepository.findAppointmentByDoctor_UserEmailAndDate(doctorEmail, date);
     }
 
     public void deleteAppointmentById(int appointmentId){

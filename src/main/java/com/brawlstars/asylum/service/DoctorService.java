@@ -13,15 +13,15 @@ public class DoctorService {
     @Autowired
     DoctorRepository doctorRepository;
 
-    List<Doctor> getAllDoctors(){
+    public List<Doctor> getAllDoctors(){
         return doctorRepository.findAll();
     }
 
-    Doctor getDoctorByUserEmail(String email){
+    public Doctor getDoctorByUserEmail(String email){
         return doctorRepository.findDoctorByUserEmail(email);
     }
 
-    List<Doctor> getAllDoctorsByPosition(String position){
+    public List<Doctor> getAllDoctorsByPosition(String position){
         return doctorRepository.findAllByPositionName(position);
     }
 }
