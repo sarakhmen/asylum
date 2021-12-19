@@ -21,9 +21,11 @@
                 </li>
                 <li class="nav-item" sec:authorize="hasAuthority('PATIENT')">
                     <a class="btn btn-light" th:href="@{/patient/appointment}">Appointments</a>
+                    <a class="btn btn-light" th:href="@{/patient/appointment/request}">Request appointment</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                     <a class="btn btn-light" th:href="@{/admin/appointment}">Appointments</a>
+                    <a class="btn btn-primary" th:href="@{/admin/appointment/create}">Create a new appointment</a>
                 </li>
             </ul>
             <div class="d-flex">

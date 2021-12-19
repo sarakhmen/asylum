@@ -16,7 +16,7 @@ public class AppointmentCreationDto {
     @NotNull(message = "*Please provide a patient's email")
     String patientEmail;
 
-    @NotNull(message = "*Please provide a patient's email")
+    @NotNull(message = "*Please provide a doctor's email")
     String doctorEmail;
 
     @NotNull(message = "*Please provide a date of birth")

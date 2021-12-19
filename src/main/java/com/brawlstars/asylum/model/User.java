@@ -64,6 +64,9 @@ public class User {
     private Doctor doctor;
 
     @OneToMany(mappedBy = "user")
+    private Set<RequestAppointment> requestAppointments;
+
+    @OneToMany(mappedBy = "user")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Treatment> treatments;
