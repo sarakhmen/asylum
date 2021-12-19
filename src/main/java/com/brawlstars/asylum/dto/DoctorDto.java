@@ -1,4 +1,4 @@
-package com.brawlstars.asylum.dtos;
+package com.brawlstars.asylum.dto;
 
 public class DoctorDto {
 

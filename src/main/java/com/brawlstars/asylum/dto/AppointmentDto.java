@@ -1,6 +1,4 @@
-package com.brawlstars.asylum.dtos;
-
-import com.brawlstars.asylum.model.Doctor;
+package com.brawlstars.asylum.dto;
 
 import java.util.Calendar;
 
