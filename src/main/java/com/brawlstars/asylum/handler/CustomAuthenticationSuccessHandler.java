@@ -1,7 +1,9 @@
 package com.brawlstars.asylum.handler;
 
+import com.brawlstars.asylum.dto.UserDto;
 import com.brawlstars.asylum.model.User;
 import com.brawlstars.asylum.service.UserService;
+import com.brawlstars.asylum.util.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
@@ -34,8 +36,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         Set<String> authorities = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         String currentUserEmail = authentication.getName();
         Optional<User> user = userService.findUserByEmail(currentUserEmail);
-        session.setAttribute("user", user.orElseThrow(() -> new UsernameNotFoundException("User not found")));
+        session.setAttribute("user", ObjectMapperUtils.map(user.orElseThrow(() -> new UsernameNotFoundException("User not found")), UserDto.class));
         response.sendRedirect("/mainPage");
-
     }
 }
