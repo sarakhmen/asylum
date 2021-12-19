@@ -44,10 +44,10 @@ public class UserService {
         return userRepository.findAll(pageable);
     }
 
-    public User saveUser(User user) {
+    public User savePatient(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(true);
-        Role userRole = roleRepository.findByRole("USER");
+        Role userRole = roleRepository.findByRole("PATIENT");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }

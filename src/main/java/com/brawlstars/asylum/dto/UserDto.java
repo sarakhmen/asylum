@@ -13,12 +13,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class UserDto implements Serializable {
     private Integer id;
 
     @NotBlank
@@ -45,7 +44,8 @@ public class UserDto {
     @Pattern(regexp = "\\+38\\(0[0-9]{2}\\)\\-[0-9]{3}\\-[0-9]{2}\\-[0-9]{2}", message = "*Incorrect phone format")
     private String phone;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull(message = "*Please provide a date of birth")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Calendar dateOfBirth;
 
     private Boolean active;
