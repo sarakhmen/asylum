@@ -23,7 +23,7 @@ public class Appointment {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User patient;
 
 
 }

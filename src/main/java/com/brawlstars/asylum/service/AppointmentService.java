@@ -19,8 +19,16 @@ public class AppointmentService {
         this.appointmentRepository = appointmentRepository;
     }
 
-    public List<Appointment> getAllAppointmentsByUserEmail(String email) {
-        return appointmentRepository.findAllByUserEmail(email);
+    public List<Appointment> getAllAppointmentsByDoctorEmail(String email) {
+        return appointmentRepository.findAllByDoctorUserEmail(email);
+    }
+
+    public List<Appointment> getAllAppointmentsByPatientEmail(String email) {
+        return appointmentRepository.findAllByPatientEmail(email);
+    }
+
+    public List<Appointment> getAllAppointments() {
+        return appointmentRepository.findAll();
     }
 
     public Optional<Appointment> getAppointmentByDate(String doctorEmail, Calendar date) {

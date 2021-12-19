@@ -7,9 +7,9 @@ public class DoctorDto {
 
    int id;
 
-   String firstName;
+   String userFirstName;
 
-   String secondName;
+   String userSecondName;
 
    String position;
 }
