@@ -21,6 +21,6 @@ public class AppointmentCreationDto {
     String doctorEmail;
 
     @NotNull(message = "*Please provide a date of birth")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     Calendar dateOfAppointment;
 }
