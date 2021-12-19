@@ -8,7 +8,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -39,6 +41,7 @@ public class UserDto implements Serializable {
     private String address;
 
     @NotBlank(message = "*Please provide a phone number")
+    @Pattern(regexp = "\\+38\\(0[0-9]{2}\\)\\-[0-9]{3}\\-[0-9]{2}\\-[0-9]{2}", message = "*Incorrect phone format")
     private String phone;
 
     @NotNull(message = "*Please provide a date of birth")

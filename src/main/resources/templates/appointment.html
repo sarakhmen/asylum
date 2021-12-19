@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,6 +10,7 @@ xmlns:th="http://www.thymeleaf.org">
 </head>
 
 <body>
+<div class="container">
  <table class="table">
      <thead>
      <tr>
@@ -16,28 +18,31 @@ xmlns:th="http://www.thymeleaf.org">
          <th scope="col">Doctor</th>
          <th scope="col">Date</th>
          <th></th>
+         <th></th>
      </tr>
      </thead>
-     <!--/*@thymesVar id="appointments" type="com.brawlstars.asylum.dto.AppointmentDto"*/-->
      <tbody th:each="appointment: ${appointments}">
-            <td>
-                <p th:text="${appointment.doctor.firstName}" />
-                <p th:text="${appointment.doctor.secondName}" />
-                <p th:text="${appointment.doctor.position}" />
-            </td>
-            <td>
-                <p th:text="${appointment.user.firstName}" />
-                <p th:text="${appointment.user.secondName}" />
-            </td>
-            <td>
-               <p th:text="${appointment.date}">
-            </td>
-            <td>
-                <form th:action="@{/appointment/{appointmentId}(appointmentId=${appointment.id})}" method="post">
-                    <button class="btn btn-outline-danger btn-sm">Delete</button>
-                </form>
-            </td>
+     <tr>
+         <td>
+             <p th:text="${appointment.doctor.firstName}"></p>
+             <p th:text="${appointment.doctor.secondName}"></p>
+             <p th:text="${appointment.doctor.position}"></p>
+         </td>
+         <td>
+             <p th:text="${appointment.patient.firstName}"></p>
+             <p th:text="${appointment.patient.secondName}"></p>
+         </td>
+         <td>
+             <p th:text="${appointment.dateOfAppointment}">
+         </td>
+         <td>
+             <form th:action="@{/appointment/{appointmentId}(appointmentId=${appointment.id})}" method="post">
+                 <button class="btn btn-outline-danger btn-sm">Delete</button>
+             </form>
+         </td>
+     </tr>
      </tbody>
  </table>
+</div>
 </body>
 </html>
