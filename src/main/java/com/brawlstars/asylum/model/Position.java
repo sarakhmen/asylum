@@ -1,12 +1,15 @@
 package com.brawlstars.asylum.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Data
 @Entity
+@Table(name = "position")
 public class Position {
     @Id
     @Column(name = "id")
@@ -20,5 +23,7 @@ public class Position {
     private String description;
 
     @OneToMany(mappedBy = "position")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Doctor> doctors;
 }
