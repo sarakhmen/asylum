@@ -10,6 +10,12 @@
 </head>
 
 <body>
+<div th:insert ="header.html"></div>
+
+<div class="" sec:authorize="hasAuthority('ADMIN')">
+    <a class="btn btn-primary" th:href="@{???}">Create a new appointment</a>
+</div>
+
 <div class="container">
  <table class="table">
      <thead>
