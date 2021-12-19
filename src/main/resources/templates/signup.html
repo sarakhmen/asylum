@@ -64,10 +64,10 @@
                 <label for="inputPhone" class="form-label">
                     Input your phone number
                 </label>
-                <input type="text" th:field="*{address}" class="form-control" id="inputPhone"
-                       placeholder="+38(066)-52-33-927">
-                <span th:if="${#fields.hasErrors('address')}"
-                      th:errors="*{address}" style="color: red"></span>
+                <input type="text" th:field="*{phone}" class="form-control" id="inputPhone"
+                       placeholder="+00(00)-00-00-000">
+                <span th:if="${#fields.hasErrors('phone')}"
+                      th:errors="*{phone}" style="color: red"></span>
             </div>
             <div class="mb-3">
                 <label for="inputDateOfBirth" class="form-label">
