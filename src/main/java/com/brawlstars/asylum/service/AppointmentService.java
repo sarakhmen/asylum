@@ -35,6 +35,8 @@ public class AppointmentService {
         return appointmentRepository.findAppointmentByDoctor_UserEmailAndDate(doctorEmail, date);
     }
 
+    public void save(Appointment appointment) { appointmentRepository.save(appointment); }
+
     public void deleteAppointmentById(int appointmentId){
         appointmentRepository.deleteById(appointmentId);
     }

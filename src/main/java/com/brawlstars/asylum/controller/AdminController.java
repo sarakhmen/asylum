@@ -46,13 +46,13 @@ public class AdminController {
     }
 
     @PostMapping("/appointment/delete/{appointmentId}")
-    public String deleteAppointment(@PathVariable int appointmentId){
+    public String deleteAppointment(@PathVariable int appointmentId) {
         appointmentService.deleteAppointmentById(appointmentId);
         return "redirect:/admin/appointment";
     }
 
     @GetMapping("/appointment/create")
-    public String createAppointment(Model model){
+    public String createAppointment(Model model) {
         AppointmentCreationDto appointmentCreationDto = new AppointmentCreationDto();
         model.addAttribute("appointment", appointmentCreationDto);
         return "appointmentCreation";
@@ -88,6 +88,11 @@ public class AdminController {
             return "appointmentCreation";
         }
 
-        return "";
+        Appointment appointmentModel = new Appointment();
+        appointmentModel.setDoctor(doctorExist.get());
+        appointmentModel.setPatient(userExists.get());
+        appointmentModel.setDate(appointment.getDateOfAppointment());
+        appointmentService.save(appointmentModel);
+        return "redirect:/admin/appointment";
     }
 }
