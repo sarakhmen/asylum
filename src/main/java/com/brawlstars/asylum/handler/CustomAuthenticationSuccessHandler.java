@@ -35,15 +35,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String currentUserEmail = authentication.getName();
         Optional<User> user = userService.findUserByEmail(currentUserEmail);
         session.setAttribute("user", user.orElseThrow(() -> new UsernameNotFoundException("User not found")));
+        response.sendRedirect("/mainPage");
 
-        if (authorities.contains("ADMIN")) {
-            response.sendRedirect("/admin/view");
-        }
-        else if (authorities.contains("DOCTOR")){
-            response.sendRedirect("/doctor/view");
-        }
-        else {
-            response.sendRedirect("/patient/view");
-        }
     }
 }

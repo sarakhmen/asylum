@@ -15,6 +15,7 @@ xmlns:th="http://www.thymeleaf.org">
          <th scope="col">Patient</th>
          <th scope="col">Doctor</th>
          <th scope="col">Date</th>
+         <th></th>
      </tr>
      </thead>
      <!--/*@thymesVar id="appointments" type="com.brawlstars.asylum.dto.AppointmentDto"*/-->
@@ -30,6 +31,11 @@ xmlns:th="http://www.thymeleaf.org">
             </td>
             <td>
                <p th:text="${appointment.date}">
+            </td>
+            <td>
+                <form th:action="@{/appointment/{appointmentId}(appointmentId=${appointment.id})}" method="post">
+                    <button class="btn btn-outline-danger btn-sm">Delete</button>
+                </form>
             </td>
      </tbody>
  </table>

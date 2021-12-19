@@ -20,5 +20,10 @@ public class AppointmentService {
     public List<Appointment> getAllAppointmentsByUserEmail(String email) {
         return appointmentRepository.findAllByUserEmail(email);
     }
+    public void deleteAppointmentById(long appointmentId){
+        Appointment appointment = appointmentRepository.getById((int)appointmentId);
+        this.appointmentRepository.delete(appointment);
+
+    }
 
 }
