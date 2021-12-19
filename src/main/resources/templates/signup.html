@@ -73,7 +73,8 @@
                     Input your phone number
                 </label>
                 <input type="text" th:field="*{phone}" class="form-control" id="inputPhone"
-                       placeholder="+38(066)-52-33-927">
+                       placeholder="+00(00)-00-00-000">
+
                 <span th:if="${#fields.hasErrors('phone')}"
                       th:errors="*{phone}" style="color: red"></span>
             </div>
