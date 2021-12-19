@@ -1,6 +1,8 @@
 package com.brawlstars.asylum.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,5 +23,7 @@ public class Position {
     private String description;
 
     @OneToMany(mappedBy = "position")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Doctor> doctors;
 }

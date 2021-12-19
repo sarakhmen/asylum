@@ -1,6 +1,8 @@
 package com.brawlstars.asylum.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -62,8 +64,12 @@ public class User {
     private Doctor doctor;
 
     @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Treatment> treatments;
 
     @OneToMany(mappedBy = "patient")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Appointment> appointments;
 }

@@ -12,11 +12,10 @@
 <body>
 <div th:insert ="header.html"></div>
 
-<div class="" sec:authorize="hasAuthority('ADMIN')">
-    <a class="btn btn-primary" th:href="@{/}">Create a new appointment</a>
-</div>
-
 <div class="container">
+    <div class="d-flex justify-content-end" sec:authorize="hasAuthority('ADMIN')">
+        <a class="btn btn-primary" th:href="@{/admin/appointment/create}">Create a new appointment</a>
+    </div>
  <table class="table">
      <thead>
      <tr>
