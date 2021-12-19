@@ -17,6 +17,10 @@ public class Appointment {
     @Column(name = "date")
     private Calendar date;
 
+    @Column(name = "status", columnDefinition = "varchar(10) default 'PENDING'")
+    @Enumerated(EnumType.STRING)
+    private AppointmentStatus status = AppointmentStatus.PENDING;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
