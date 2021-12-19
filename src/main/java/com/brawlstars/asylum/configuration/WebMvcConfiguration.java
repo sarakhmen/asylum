@@ -17,6 +17,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/mainPage").setViewName("mainPage");
+
     }
 
     @Bean
