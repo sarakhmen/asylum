@@ -8,6 +8,7 @@
     <title>Sign up</title>
 </head>
 <body>
+
 <div class="container">
     <div class="d-flex justify-content-center pt-4 mt-3 fs-4">
         Sign up
@@ -87,7 +88,6 @@
                 <span th:if="${#fields.hasErrors('dateOfBirth')}"
                       th:errors="*{dateOfBirth}" style="color: red"></span>
             </div>
-
             <button type="submit" class="btn btn-primary">Submit
             </button>
         </form>
