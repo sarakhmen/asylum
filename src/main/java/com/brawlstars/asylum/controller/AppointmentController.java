@@ -1,5 +1,6 @@
 package com.brawlstars.asylum.controller;
 
+import com.brawlstars.asylum.dto.AppointmentCreationDto;
 import com.brawlstars.asylum.dto.AppointmentDto;
 import com.brawlstars.asylum.model.Appointment;
 import com.brawlstars.asylum.service.AppointmentService;
@@ -24,6 +25,13 @@ public class AppointmentController {
 
     @Autowired
     AppointmentService appointmentService;
+
+    @GetMapping("/admin/appointment/create")
+    public String createAppointment(Model model){
+        AppointmentCreationDto appointmentCreationDto = new AppointmentCreationDto();
+        model.addAttribute("appointment", appointmentCreationDto);
+        return "appointmentCreation";
+    }
 
     @GetMapping({"/patient/appointment", "/doctor/appointment"})
     public String appointmentsView(Principal principal, Model model, HttpServletRequest httpServletRequest) {
