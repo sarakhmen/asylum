@@ -8,14 +8,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class UserDto implements Serializable {
     private Integer id;
 
     @NotBlank
@@ -41,7 +41,8 @@ public class UserDto {
     @NotBlank(message = "*Please provide a phone number")
     private String phone;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull(message = "*Please provide a date of birth")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Calendar dateOfBirth;
 
     private Boolean active;

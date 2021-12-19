@@ -4,16 +4,16 @@ package com.brawlstars.asylum.controller;
 import com.brawlstars.asylum.dto.UserDto;
 import com.brawlstars.asylum.model.User;
 import com.brawlstars.asylum.service.UserService;
+import com.brawlstars.asylum.util.ObjectMapperUtils;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -36,7 +36,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/signup")
-    public String createNewUser(@Valid UserDto user, BindingResult bindingResult, HttpServletRequest request){
+    public String createNewUser(@Valid @ModelAttribute("user") UserDto user, BindingResult bindingResult){
         Optional<User> userExist = userService.findUserByEmail(user.getEmail());
         if (userExist.isPresent()) {
             bindingResult
@@ -48,9 +48,8 @@ public class RegistrationController {
             return "signup";
         }
 
-        User userModel = new User();
-        BeanUtils.copyProperties(user, userModel);
-        userService.saveUser(userModel);
+        User userModel = ObjectMapperUtils.map(user, User.class);
+        userService.savePatient(userModel);
         log.info("User successfully signed up");
         return "redirect:/login";
     }
