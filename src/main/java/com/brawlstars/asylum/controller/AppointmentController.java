@@ -10,8 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.Principal;
 import java.util.List;
 
@@ -30,11 +33,12 @@ public class AppointmentController {
         model.addAttribute("appointments", appointmentDtoList);
         return "appointment";
     }
-    @GetMapping("/deleteAppointment/{appointmentId}")
-    public String deleteAppointment(@PathVariable long appointmentId){
-        appointmentService.deleteAppointmentById(appointmentId);
-        return "redirect:/appointment";
 
+    @GetMapping("/patient/appointment/delete/{appointmentId}")
+    public String deleteAppointment(@PathVariable int appointmentId, HttpServletRequest request) throws MalformedURLException {
+//        appointmentService.deleteAppointmentById(appointmentId);
+        String redirectPath = new URL(request.getRequestURL().toString()).getPath().split("/delete")[0];
+        return "redirect:" + redirectPath;
     }
 
 }

@@ -25,9 +25,7 @@
                 <label for="inputPassword1" class="form-label">Input your password</label>
                 <input type="password" name="password" class="form-control" id="inputPassword1" placeholder="Your password">
                 <span th:if="${param.error}" style="color: red; text-align:center">
-                <p>
-                    Invalid login, try again!
-                </p>
+                    Invalid login or password, try again!
             </span>
             </div>
             <button type="submit" class="btn btn-primary">Sign up</button>
