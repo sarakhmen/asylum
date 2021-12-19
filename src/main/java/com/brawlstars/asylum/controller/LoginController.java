@@ -15,4 +15,7 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("/mainPage")
+    public String showMainPage(){return "mainPage";}
+
 }

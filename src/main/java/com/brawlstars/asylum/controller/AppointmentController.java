@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -25,8 +26,15 @@ public class AppointmentController {
     public String appointmentsView(Principal principal, Model model, HttpServletRequest httpServletRequest) {
         List<Appointment> appointmentModelList = appointmentService.getAllAppointmentsByUserEmail(principal.getName());
         List<AppointmentDto> appointmentDtoList = ObjectMapperUtils.mapAll(appointmentModelList, AppointmentDto.class);
+        System.out.println(appointmentDtoList);
         model.addAttribute("appointments", appointmentDtoList);
         return "appointment";
+    }
+    @GetMapping("/deleteAppointment/{appointmentId}")
+    public String deleteAppointment(@PathVariable long appointmentId){
+        appointmentService.deleteAppointmentById(appointmentId);
+        return "redirect:/appointment";
+
     }
 
 }
