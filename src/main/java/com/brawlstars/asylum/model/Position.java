@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Data
 @Entity
+@Table(name = "position")
 public class Position {
     @Id
     @Column(name = "id")
