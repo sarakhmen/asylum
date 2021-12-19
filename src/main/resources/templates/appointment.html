@@ -17,7 +17,7 @@ xmlns:th="http://www.thymeleaf.org">
          <th scope="col">Date</th>
      </tr>
      </thead>
-     <!--/*@thymesVar id="appointments" type="com.brawlstars.asylum.dtos.AppointmentDto"*/-->
+     <!--/*@thymesVar id="appointments" type="com.brawlstars.asylum.dto.AppointmentDto"*/-->
      <tbody th:each="appointment: ${appointments}">
             <td>
                 <p th:text="${appointment.doctor.firstName}" />
