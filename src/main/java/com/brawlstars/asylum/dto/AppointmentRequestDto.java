@@ -1,5 +1,6 @@
 package com.brawlstars.asylum.dto;
 
+import com.brawlstars.asylum.model.AppointmentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,7 @@ public class AppointmentRequestDto {
 
     @NotNull(message = "*Doctor position cannot be empty")
     private String doctorPosition;
+
+    @NotNull(message = "*Status cannot be empty")
+    private AppointmentStatus status = AppointmentStatus.REQUESTED;
 }

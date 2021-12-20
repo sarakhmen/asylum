@@ -1,18 +1,14 @@
 package com.brawlstars.asylum.controller;
 
-import com.brawlstars.asylum.dto.AppointmentCreationDto;
 import com.brawlstars.asylum.dto.AppointmentDto;
 import com.brawlstars.asylum.dto.AppointmentRequestDto;
 import com.brawlstars.asylum.model.Appointment;
-import com.brawlstars.asylum.model.Doctor;
 import com.brawlstars.asylum.model.RequestAppointment;
 import com.brawlstars.asylum.model.User;
 import com.brawlstars.asylum.service.AppointmentService;
 import com.brawlstars.asylum.service.RequestAppointmentService;
-import com.brawlstars.asylum.service.UserService;
 import com.brawlstars.asylum.util.ObjectMapperUtils;
 import lombok.extern.log4j.Log4j2;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +20,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Log4j2
 @Controller
@@ -39,7 +34,6 @@ public class PatientController {
     public String appointmentsView(Principal principal, Model model) {
         List<Appointment> appointmentModelList = appointmentService.getAllAppointmentsByPatientEmail(principal.getName());
         List<AppointmentDto> appointmentDtoList = ObjectMapperUtils.mapAll(appointmentModelList, AppointmentDto.class);
-        System.out.println(appointmentDtoList);
         model.addAttribute("appointments", appointmentDtoList);
         return "appointment";
     }
@@ -51,10 +45,18 @@ public class PatientController {
     }
 
     @GetMapping("/appointment/request")
-    public String createAppointment(Model model) {
+    public String createAppointment(Principal principal, Model model) {
         AppointmentRequestDto appointmentRequestDto = new AppointmentRequestDto();
         model.addAttribute("requestAppointment", appointmentRequestDto);
+        List<RequestAppointment> requests = requestAppointmentService.getAllRequestAppointmentsByPatientEmail(principal.getName());
+        List<AppointmentRequestDto> appointmentRequestDtos = ObjectMapperUtils.mapAll(requests, AppointmentRequestDto.class);
+        model.addAttribute("requests", appointmentRequestDtos);
         return "appointmentRequest";
+    }
+    @PostMapping("requestAppointment/decline/{id}")
+    public String declineRequestAppointment(@PathVariable int id){
+        requestAppointmentService.declineRequestAppointment(id);
+        return "redirect:/patient/appointment/request";
     }
     @PostMapping("/create/requestAppointment")
     public String createRequestApointment(@Valid @ModelAttribute("requestAppointment") AppointmentRequestDto appointment,

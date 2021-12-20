@@ -54,3 +54,7 @@ REPLACE INTO treatment(id, chamber, duration, methods_of_treatment, treatment_st
 REPLACE INTO treatment_diagnos(id, diagnos_id) VALUES (1,1);
 REPLACE INTO treatment_diagnos(id, diagnos_id) VALUES (2,2);
 REPLACE INTO treatment_diagnos(id, diagnos_id) VALUES (3,3);
+
+REPLACE INTO request_appointment(id, doctor_position, user_id) VALUES (1, 1, 1);
+REPLACE INTO request_appointment(id, doctor_position, user_id) VALUES (2, 2, 2);
+REPLACE INTO request_appointment(id, doctor_position, user_id) VALUES (3, 3, 3);

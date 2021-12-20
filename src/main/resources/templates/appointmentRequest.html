@@ -12,10 +12,42 @@
     <div th:insert ="header.html"></div>
         <div class="container">
             <div class="row">
-                <div class="col-9">
-                    user requests will be here
+                <div class="col-6">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Doctor position</th>
+                            <th scope="col">Status</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody th:each="requests: ${requests}">
+                        <td>
+                            <p th:text="${requests.id}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${requests.doctorPosition}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${requests.status}"></p>
+                        </td>
+                        <td>
+                            <div th:if="${requests.status.name() != 'DECLINED'}">
+                                <form th:action="@{/patient/requestAppointment/decline/{id}(id=${requests.id})}" method="post">
+                                    <button class="btn btn-outline-danger btn-sm">Decline</button>
+                                </form>
+                            </div>
+                        </td>
+
+                        </tbody>
+
+                    </table>
                 </div>
-                <div class="col">
+                <div class="col-3">
+
+                </div>
+                <div class="col-3">
                     <form th:action="@{/patient/create/requestAppointment}" th:object="${requestAppointment}" method="post">
                         <div class="mb-3">
                             <label for="inputPosition" class="form-label">

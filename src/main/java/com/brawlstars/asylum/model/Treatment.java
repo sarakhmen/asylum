@@ -30,7 +30,7 @@ public class Treatment {
     @Column(name = "chamber")
     private Integer chamber;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -40,7 +40,7 @@ public class Treatment {
             inverseJoinColumns = @JoinColumn(name = "diagnos_id"))
     private Set<Diagnos> diagnoses;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
