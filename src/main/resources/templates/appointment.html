@@ -37,9 +37,22 @@
              <p th:text="${appointment.dateOfAppointment}">
          </td>
          <td>
-             <form th:action="@{/appointment/{appointmentId}(appointmentId=${appointment.id})}" method="post">
-                 <button class="btn btn-outline-danger btn-sm">Delete</button>
-             </form>
+             <div sec:authorize="hasAuthority('PATIENT')">
+                 <form th:action="@{/patient/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}" method="post">
+                     <button class="btn btn-outline-danger btn-sm">Delete</button>
+                 </form>
+             </div>
+             <div sec:authorize="hasAuthority('DOCTOR')">
+                 <form th:action="@{/doctor/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}" method="post">
+                     <button class="btn btn-outline-danger btn-sm">Delete</button>
+                 </form>
+             </div>
+             <div sec:authorize="hasAuthority('ADMIN')">
+                 <form th:action="@{/admin/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}" method="post">
+                     <button class="btn btn-outline-danger btn-sm">Delete</button>
+                 </form>
+             </div>
+
          </td>
      </tr>
      </tbody>
