@@ -1,6 +1,8 @@
 package com.brawlstars.asylum.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -24,17 +26,21 @@ public class Treatment {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Calendar startOfTreatment;
 
-    @Column(name = "duration")
-    private Integer duration;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "treatment_end")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Calendar endOfTreatment;
 
     @Column(name = "chamber")
     private Integer chamber;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User patient;
 
     @ManyToMany(cascade = CascadeType.MERGE)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @JoinTable(name = "treatment_diagnos",
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "diagnos_id"))

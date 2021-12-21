@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Treatments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+<div th:insert ="header.html"></div>
+<div class="container">
+    <p th:text="${session.user.firstName + ' ' + session.user.secondName + ' treatments:'}"/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Diagnose</th>
+            <th scope="col">Patient</th>
+            <th scope="col">Doctor</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody th:each="treatment: ${treatments}">
+        <tr>
+            <td>
+                <p th:text="${treatment.id}"></p>
+            </td>
+            <td>
+                <div th:each="diagnose: ${treatment.diagnoses}">
+                    <p th:text="${diagnose.name}"></p>
+                </div>
+            </td>
+            <td style="white-space:nowrap;">
+                <p th:text="${treatment.patient.firstName + ' ' + treatment.patient.secondName}">
+            </td>
+            <td style="white-space:nowrap;">
+                <p th:text="${treatment.doctor.userFirstName + ' ' + treatment.doctor.userSecondName}">
+            </td>
+            <td>
+                <p th:text="${#dates.format(treatment.startOfTreatment, 'dd-MM-yyyy HH:mm')}">
+            </td>
+            <td>
+                <p th:text="${#dates.format(treatment.endOfTreatment, 'dd-MM-yyyy HH:mm')}">
+            </td>
+            <td>
+                <div sec:authorize="hasAuthority('PATIENT')">
+                    <form th:action="@{/patient/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Edit</button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAuthority('DOCTOR')">
+                    <form th:action="@{/doctor/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Edit</button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <form th:action="@{/admin/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Edit</button>
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div sec:authorize="hasAuthority('PATIENT')">
+                    <form th:action="@{/patient/treatment/delete/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAuthority('DOCTOR')">
+                    <form th:action="@{/doctor/treatment/delete/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <form th:action="@{/admin/treatment/delete/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

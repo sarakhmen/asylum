@@ -1,18 +1,21 @@
 package com.brawlstars.asylum.controller;
 
 import com.brawlstars.asylum.dto.AppointmentDto;
+import com.brawlstars.asylum.dto.AppointmentRequestDto;
+import com.brawlstars.asylum.dto.TreatmentDto;
 import com.brawlstars.asylum.model.Appointment;
+import com.brawlstars.asylum.model.Treatment;
 import com.brawlstars.asylum.service.AppointmentService;
+import com.brawlstars.asylum.service.TreatmentService;
 import com.brawlstars.asylum.util.ObjectMapperUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -22,6 +25,8 @@ import java.util.List;
 public class DoctorController {
     @Autowired
     AppointmentService appointmentService;
+    @Autowired
+    TreatmentService treatmentService;
 
 
     @GetMapping("/appointment")
@@ -37,5 +42,28 @@ public class DoctorController {
     public String deleteAppointment(@PathVariable int appointmentId){
         appointmentService.deleteAppointmentById(appointmentId);
         return "redirect:/doctor/appointment";
+    }
+
+    @PostMapping("/treatment/create/{appointmentId}")
+    public String createTreatment(@PathVariable int appointmentId){
+        Treatment newTreatment = treatmentService.createTreatment(appointmentId);
+        return "redirect:/doctor/treatment/edit/" + newTreatment.getId();
+    }
+
+    @GetMapping("treatment/edit/{treatmentId}")
+    public String editTreatment(@PathVariable int treatmentId, Model model){
+        Treatment treatmentModel = treatmentService.getTreatmentById(treatmentId);
+        TreatmentDto treatmentDto = ObjectMapperUtils.map(treatmentModel, TreatmentDto.class);
+        model.addAttribute("treatment", treatmentDto);
+        return "treatmentEditing";
+    }
+
+    @PostMapping("treatment/edit")
+    public String editTreatment(@Valid @ModelAttribute("treatment") TreatmentDto treatmentDto,
+                                BindingResult bindingResult){
+        Treatment treatmentModel = ObjectMapperUtils.map(treatmentDto, Treatment.class);
+        treatmentService.saveTreatment(treatmentModel);
+
+        return "treatmentEditing";
     }
 }
