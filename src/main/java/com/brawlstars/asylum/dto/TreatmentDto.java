@@ -21,7 +21,6 @@ public class TreatmentDto {
 
     private String methodsOfTreatment;
 
-    @NotNull(message = "*Please provide a date of birth")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Calendar startOfTreatment;
 

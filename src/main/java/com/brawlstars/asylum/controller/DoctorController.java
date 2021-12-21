@@ -58,12 +58,29 @@ public class DoctorController {
         return "treatmentEditing";
     }
 
-    @PostMapping("treatment/edit")
-    public String editTreatment(@Valid @ModelAttribute("treatment") TreatmentDto treatmentDto,
+    @PostMapping("treatment/edit/{treatmentId}")
+    public String editTreatment(@PathVariable int treatmentId, @Valid @ModelAttribute("treatment") TreatmentDto treatmentDto,
                                 BindingResult bindingResult){
-        Treatment treatmentModel = ObjectMapperUtils.map(treatmentDto, Treatment.class);
+        Treatment treatmentModel = treatmentService.getTreatmentById(treatmentId);
+        TreatmentDto customizedTreatment = ObjectMapperUtils.map(treatmentModel, TreatmentDto.class);
+        customizedTreatment.setEndOfTreatment(treatmentDto.getEndOfTreatment());
+        customizedTreatment.setMethodsOfTreatment(treatmentDto.getMethodsOfTreatment());
+        customizedTreatment.setChamber(treatmentDto.getChamber());
         treatmentService.saveTreatment(treatmentModel);
+        return "redirect:/doctor/treatment";
+    }
 
-        return "treatmentEditing";
+    @GetMapping("/treatment")
+    public String userTreatments(Principal principal, Model model) {
+        List<Treatment> treatmentList = treatmentService.getAllTreatmentsForDoctor(principal.getName());
+        List<TreatmentDto> treatmentDtoList = ObjectMapperUtils.mapAll(treatmentList, TreatmentDto.class);
+        model.addAttribute("treatments", treatmentDtoList);
+        return "treatment";
+    }
+
+    @PostMapping("/treatment/delete/{treatmentId}")
+    public String deleteTreatment(@PathVariable int treatmentId){
+        treatmentService.deleteTreatmentById(treatmentId);
+        return "redirect:/doctor/treatment";
     }
 }

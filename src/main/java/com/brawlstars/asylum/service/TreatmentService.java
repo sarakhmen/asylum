@@ -23,6 +23,10 @@ public class TreatmentService {
         return treatmentRepository.findAllByPatientEmail(email);
     }
 
+    public List<Treatment> getAllTreatmentsForDoctor(String email) {
+        return treatmentRepository.findAllByDoctorUserEmail(email);
+    }
+
     public Treatment getLastTreatmentForPatient(String email) {
         var temp = treatmentRepository.findAllByPatientEmail(email);
         if (temp.size() == 0) {
