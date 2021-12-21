@@ -11,8 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/css.css}"/>
 </head>
 <body class="sub_page">
-<div class="top_area">
-    <div th:insert ="header.html"></div>
+<div th:insert="header.html"></div>
 <!--    <header class="header_section">-->
 <!--        <div class="container">-->
 <!--            <nav class="navbar navbar-expand-lg custom_nav-container ">-->
@@ -45,7 +44,6 @@
 <!--            </nav>-->
 <!--        </div>-->
 <!--    </header>-->
-</div>
 <!-- end header section -->
 <!-- personalcabinet section -->
 <section class="personalcabinet_section layout_padding">
@@ -59,40 +57,40 @@
                     <p>
                         text
                     </p>
-                    <div class="btn-box">
-                        <div sec:authorize="hasAuthority('DOCTOR')">
-                            <a class="btn1" th:href="@{/doctor/appointment}">
-                                <button>
-                                    GO TO APPOINTMENTS
-                                </button>
-                            </a>
-                        </div>
-                        <div sec:authorize="hasAuthority('PATIENT')">
-                            <a class="btn1" th:href="@{/patient/appointment}">
-                                <button>
-                                    GO TO APPOINTMENTS
-                                </button>
-                            </a>
-                        </div>
-                        <div sec:authorize="hasAuthority('ADMIN')">
-                            <a class="btn1" th:href="@{/admin/appointment}">
-                                <button>
-                                    GO TO APPOINTMENTS
-                                </button>
-                            </a>
-                        </div>
-                    </div>
+                    <!--                    <div class="btn-box">-->
+                    <!--                        <div sec:authorize="hasAuthority('DOCTOR')">-->
+                    <!--                            <a class="btn1" th:href="@{/doctor/appointment}">-->
+                    <!--                                <button>-->
+                    <!--                                    GO TO APPOINTMENTS-->
+                    <!--                                </button>-->
+                    <!--                            </a>-->
+                    <!--                        </div>-->
+                    <!--                        <div sec:authorize="hasAuthority('PATIENT')">-->
+                    <!--                            <a class="btn1" th:href="@{/patient/appointment}">-->
+                    <!--                                <button>-->
+                    <!--                                    GO TO APPOINTMENTS-->
+                    <!--                                </button>-->
+                    <!--                            </a>-->
+                    <!--                        </div>-->
+                    <!--                        <div sec:authorize="hasAuthority('ADMIN')">-->
+                    <!--                            <a class="btn1" th:href="@{/admin/appointment}">-->
+                    <!--                                <button>-->
+                    <!--                                    GO TO APPOINTMENTS-->
+                    <!--                                </button>-->
+                    <!--                            </a>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </section>
 <!-- end personalcabinet section -->
 
-
+<div th:insert="footer.html"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

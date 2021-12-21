@@ -14,33 +14,33 @@
     </div>
     <div class="row">
         <div class="col">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">First name</th>
-                <th scope="col">Doctor position</th>
-                <th scope="col">Experience</th>
-                <th scope="col">Email</th>
-            </tr>
-            </thead>
-            <tbody th:each="doctor: ${session.appointmentAttribute.doctors}">
-            <td>
-                <p th:text="${doctor.userFirstName}"></p>
-            </td>
-            <td>
-                <p th:text="${doctor.positionName}"></p>
-            </td>
-            <td>
-                <p th:text="${doctor.experience}"></p>
-            </td>
-            <td>
-                <p th:text="${doctor.userEmail}"></p>
-            </td>
-
-            </tbody>
-
-        </table>
-    </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">First name</th>
+                    <th scope="col">Doctor position</th>
+                    <th scope="col">Experience</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+                <tbody th:each="doctor: ${session.appointmentAttribute.doctors}">
+                <tr>
+                    <td>
+                        <p th:text="${doctor.userFirstName}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${doctor.positionName}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${doctor.experience}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${doctor.userEmail}"></p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="col-3">
             <div class="d-flex justify-content-center pt-4 mt-3 fs-4">
                 <form th:action="@{/admin/appointment/create}" th:object="${appointmentCreation}" method="post">
@@ -48,7 +48,7 @@
                         <label for="inputPatientEmail" class="form-label">
                             Patient email
                         </label>
-                        <input type="email"  th:field="*{patientEmail}" class="form-control" id="inputPatientEmail"
+                        <input type="email" th:field="*{patientEmail}" class="form-control" id="inputPatientEmail"
                                placeholder="example@example.com">
                     </div>
                     <div class="mb-3">
@@ -57,7 +57,8 @@
                         </label>
                         <input type="email" th:field="*{doctorEmail}" class="form-control" id="inputDoctorEmail"
                                placeholder="example@example.com">
-                        <span th:if="${#fields.hasErrors('doctorEmail')}" th:errors="*{doctorEmail}" style="color: red"></span>
+                        <span th:if="${#fields.hasErrors('doctorEmail')}" th:errors="*{doctorEmail}"
+                              style="color: red"></span>
                     </div>
                     <div class="mb-3">
                         <label for="inputAppointmentDate" class="form-label">
