@@ -18,7 +18,11 @@
                 <label for="inputPatientEmail" class="form-label">
                     Input patient email
                 </label>
+<<<<<<< Updated upstream
                 <input type="email" th:field="*{patientEmail}" class="form-control" id="inputPatientEmail"
+=======
+                <input type="email" required th:field="*{patientEmail}" class="form-control" id="inputPatientEmail"
+>>>>>>> Stashed changes
                        placeholder="example@example.com">
                 <span th:if="${#fields.hasErrors('patientEmail')}" th:errors="*{patientEmail}" style="color: red"></span>
             </div>
@@ -26,7 +30,11 @@
                 <label for="inputDoctorEmail" class="form-label">
                     Input doctor email
                 </label>
+<<<<<<< Updated upstream
                 <input type="email" th:field="*{doctorEmail}" class="form-control" id="inputDoctorEmail"
+=======
+                <input type="email" required th:field="*{doctorEmail}" class="form-control" id="inputDoctorEmail"
+>>>>>>> Stashed changes
                        placeholder="example@example.com">
                 <span th:if="${#fields.hasErrors('doctorEmail')}" th:errors="*{doctorEmail}" style="color: red"></span>
             </div>

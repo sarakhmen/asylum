@@ -24,6 +24,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
     @Autowired
     AppointmentService appointmentService;
     @Autowired

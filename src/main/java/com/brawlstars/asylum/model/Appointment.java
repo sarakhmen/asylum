@@ -29,5 +29,4 @@ public class Appointment {
     @JoinColumn(name = "user_id")
     private User patient;
 
-
 }
