@@ -352,6 +352,34 @@ a:focus {
   color: #62d2a2;
 }
 
+/*personal cabinet*/
+
+.personalcabinet_section {
+  position: relative;
+}
+
+.personalcabinet_section .heading_container {
+  margin-bottom: 25px;
+}
+
+.personalcabinet_section .heading_container h2 {
+  text-transform: uppercase;
+}
+
+.personalcabinet_section .detail-box button {
+  width: 100%;
+  border: none;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 12px 55px;
+  background-color: #1fab89;
+  color: #ffffff;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid #1fab89;
+}
+
 /*footer section*/
 
 .footer_section {
