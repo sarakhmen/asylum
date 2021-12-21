@@ -99,9 +99,6 @@ public class AdminController {
                                              BindingResult bindingResult, HttpServletRequest request) {
         AppointmentCreationDto appointmentCreationDto = (AppointmentCreationDto) request.getSession().getAttribute("appointmentAttribute");
 
-        System.out.println("/n/n"+ appointmentCreationDto);
-        System.out.println(appointment+"\n\n");
-
         Optional<Doctor> doctorExist = Optional
                 .ofNullable(doctorService
                         .getDoctorByUserEmail(appointment.getDoctorEmail()));

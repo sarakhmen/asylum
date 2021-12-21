@@ -46,11 +46,11 @@ REPLACE INTO doctor(id, experience, department_id, position_id, user_id) VALUES 
 REPLACE INTO appointment(id, date, doctor_id, user_id) VALUES (1, '2021-12-28', 1, 2);
 REPLACE INTO appointment(id, date, doctor_id, user_id) VALUES (2, '2021-12-27', 2, 3);
 REPLACE INTO appointment(id, date, doctor_id, user_id) VALUES (3, '2021-12-26', 3, 4);
-
-REPLACE INTO treatment(id, chamber, treatment_end, methods_of_treatment, treatment_start, doctor_id, user_id)  VALUES (1, 123, '2021-12-28', 'methodOfTreatment1', '2021-12-20', 1, 2);
-REPLACE INTO treatment(id, chamber, treatment_end, methods_of_treatment, treatment_start, doctor_id, user_id)  VALUES (2, 321, '2021-12-28', 'methodOfTreatment2', '2021-12-19', 2, 3);
-REPLACE INTO treatment(id, chamber, treatment_end, methods_of_treatment, treatment_start, doctor_id, user_id)  VALUES (3, 312, '2021-12-28', 'methodOfTreatment3', '2021-12-21', 3, 4);
-REPLACE INTO treatment(id, chamber, treatment_end, methods_of_treatment, treatment_start, doctor_id, user_id)  VALUES (4, 321, '2021-12-28', 'methodOfTreatment2', '2021-12-19', 2, 2);
+#
+# REPLACE INTO treatment(id, chamber, treatment_end, methods_of_treatment, treatment_start, doctor_id, user_id)  VALUES (1, 123, '2021-12-28', 'methodOfTreatment1', '2021-12-20', 1, 2);
+# REPLACE INTO treatment(id, chamber, treatment_end, methods_of_treatment, treatment_start, doctor_id, user_id)  VALUES (2, 321, '2021-12-28', 'methodOfTreatment2', '2021-12-19', 2, 3);
+# REPLACE INTO treatment(id, chamber, treatment_end, methods_of_treatment, treatment_start, doctor_id, user_id)  VALUES (3, 312, '2021-12-28', 'methodOfTreatment3', '2021-12-21', 3, 4);
+# REPLACE INTO treatment(id, chamber, treatment_end, methods_of_treatment, treatment_start, doctor_id, user_id)  VALUES (4, 321, '2021-12-28', 'methodOfTreatment2', '2021-12-19', 2, 2);
 
 REPLACE INTO treatment_diagnos(id, diagnos_id) VALUES (1,1);
 REPLACE INTO treatment_diagnos(id, diagnos_id) VALUES (1,2);
