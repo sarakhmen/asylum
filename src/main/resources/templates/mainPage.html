@@ -12,38 +12,39 @@
 </head>
 <body class="sub_page">
 <div class="top_area">
-    <header class="header_section">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="index.html"> <span >Hospital System </span> </a>
+    <div th:insert ="header.html"></div>
+<!--    <header class="header_section">-->
+<!--        <div class="container">-->
+<!--            <nav class="navbar navbar-expand-lg custom_nav-container ">-->
+<!--                <a class="navbar-brand" href="index.html"> <span >Hospital System </span> </a>-->
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class=""> </span>
-                </button>
+<!--                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                    <span class=""> </span>-->
+<!--                </button>-->
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="personal-cabinet.html">Personal cabinet</a>
-                        </li>
-                        <li class="nav-item  active">
-                            <a class="nav-link" href="about.html"> About </a>
-                        </li>
-                        <div class="d-flex">
-                            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                Log out
-                            </button>
-                        </div>
+<!--                <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--                    <ul class="navbar-nav">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="index.html">Home</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="mainPage.html">Personal cabinet</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item  active">-->
+<!--                            <a class="nav-link" href="about.html"> About </a>-->
+<!--                        </li>-->
+<!--                        <div class="d-flex">-->
+<!--                            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"-->
+<!--                                    data-bs-target="#exampleModal">-->
+<!--                                Log out-->
+<!--                            </button>-->
+<!--                        </div>-->
 
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </nav>-->
+<!--        </div>-->
+<!--    </header>-->
 </div>
 <!-- end header section -->
 <!-- personalcabinet section -->
@@ -89,25 +90,7 @@
 </section>
 <!-- end personalcabinet section -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Log out</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Confirm logging out</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <form th:action="@{/logout}">
-                    <button type="submit" class="btn btn-primary">Log out</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
