@@ -1,17 +1,8 @@
 package com.brawlstars.asylum.controller;
 
-import com.brawlstars.asylum.dto.AppointmentCreationDto;
-import com.brawlstars.asylum.dto.AppointmentDto;
-import com.brawlstars.asylum.dto.AppointmentRequestDto;
-import com.brawlstars.asylum.dto.DoctorDto;
-import com.brawlstars.asylum.model.Appointment;
-import com.brawlstars.asylum.model.Doctor;
-import com.brawlstars.asylum.model.RequestAppointment;
-import com.brawlstars.asylum.model.User;
-import com.brawlstars.asylum.service.AppointmentService;
-import com.brawlstars.asylum.service.DoctorService;
-import com.brawlstars.asylum.service.RequestAppointmentService;
-import com.brawlstars.asylum.service.UserService;
+import com.brawlstars.asylum.dto.*;
+import com.brawlstars.asylum.model.*;
+import com.brawlstars.asylum.service.*;
 import com.brawlstars.asylum.util.ObjectMapperUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +29,8 @@ public class AdminController {
     UserService userService;
     @Autowired
     RequestAppointmentService requestAppointmentService;
+    @Autowired
+    TreatmentService treatmentService;
 
     @GetMapping("/appointmentRequest")
     public String requestsView(Model model){
@@ -136,5 +129,26 @@ public class AdminController {
         appointmentService.save(appointmentModel);
         requestAppointmentService.deleteRequestAppointmentById(appointmentCreationDto.getId());
         return "redirect:/admin/appointment";
+    }
+
+    @GetMapping("/createEpicrisis")
+    public String createEpicrisis(Model model){
+        EpicrisisCreationDto epicrisisCreationDto = new EpicrisisCreationDto();
+        model.addAttribute(epicrisisCreationDto);
+        return "epicrisisCreation";
+    }
+
+    @PostMapping("/createEpicrisis")
+    public String confirmCreation(@Valid @ModelAttribute("epicrisis") EpicrisisCreationDto epicrisisCreationDto,
+                                  BindingResult bindingResult, Model model, HttpServletRequest request) {
+        Optional<User> userExists =
+                userService.findUserByEmail(epicrisisCreationDto.getPatientEmail());
+        if (userExists.isEmpty()) {
+            bindingResult.rejectValue("patientEmail", "error.appointment",
+                    "*This patient hasn't been registered in our hospital");
+        }
+        Treatment treatment = treatmentService.getLastTreatmentForPatient(userExists.get().getEmail());
+        model.addAttribute(treatment);
+        return "epicrisisResult";
     }
 }
