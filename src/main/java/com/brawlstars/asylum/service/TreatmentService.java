@@ -23,6 +23,14 @@ public class TreatmentService {
         return treatmentRepository.findAllByPatientEmail(email);
     }
 
+    public Treatment getLastTreatmentForPatient(String email) {
+        var temp = treatmentRepository.findAllByPatientEmail(email);
+        if (temp.size() == 0) {
+            return null;
+        }
+        return temp.get(temp.size() - 1);
+    }
+
     public void deleteTreatmentById(int id){
         treatmentRepository.deleteById(id);
     }
