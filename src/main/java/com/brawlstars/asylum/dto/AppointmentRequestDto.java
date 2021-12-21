@@ -20,4 +20,6 @@ public class AppointmentRequestDto {
 
     @NotNull(message = "*Status cannot be empty")
     private AppointmentStatus status = AppointmentStatus.REQUESTED;
+
+    private String userEmail;
 }

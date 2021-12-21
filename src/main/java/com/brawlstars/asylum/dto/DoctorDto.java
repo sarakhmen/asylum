@@ -11,5 +11,9 @@ public class DoctorDto {
 
    String userSecondName;
 
+   String userEmail;
+
    String positionName;
+
+   Integer experience;
 }
