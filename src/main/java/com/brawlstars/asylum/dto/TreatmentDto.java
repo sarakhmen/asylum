@@ -22,10 +22,10 @@ public class TreatmentDto {
     private String methodsOfTreatment;
 
     @NotNull(message = "*Please provide a date of birth")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Calendar startOfTreatment;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Calendar endOfTreatment;
 
     private Integer chamber;

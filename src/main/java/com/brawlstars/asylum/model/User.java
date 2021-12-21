@@ -55,6 +55,8 @@ public class User {
     private Boolean active;
 
     @ManyToMany(cascade = CascadeType.MERGE)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -66,7 +68,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<RequestAppointment> requestAppointments;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Treatment> treatments;

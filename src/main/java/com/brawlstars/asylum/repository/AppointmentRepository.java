@@ -15,4 +15,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     List<Appointment> findAllByPatientEmail(String doctorEmail);
     List<Appointment> findAll();
     Optional<Appointment> findAppointmentByDoctor_UserEmailAndDate(String email, Calendar date);
+    Appointment findById(int id);
 }

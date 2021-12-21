@@ -12,7 +12,7 @@
 <body>
 <div th:insert ="header.html"></div>
 <div class="container">
-    <p th:text="${user.email + 'treatments:'}"/>
+    <p th:text="${session.user.firstName + ' ' + session.user.secondName + ' treatments:'}"/>
     <table class="table">
         <thead>
         <tr>
@@ -36,35 +36,51 @@
                     <p th:text="${diagnose.name}"></p>
                 </div>
             </td>
-            <td>
-                <p th:text="${treatment.patient.firstName + treatment.patient.secondName}">
+            <td style="white-space:nowrap;">
+                <p th:text="${treatment.patient.firstName + ' ' + treatment.patient.secondName}">
+            </td>
+            <td style="white-space:nowrap;">
+                <p th:text="${treatment.doctor.userFirstName + ' ' + treatment.doctor.userSecondName}">
             </td>
             <td>
-                <p th:text="${treatment.doctor.userFirstName + treatment.doctor.userSecondName}">
+                <p th:text="${#dates.format(treatment.startOfTreatment, 'dd-MM-yyyy HH:mm')}">
             </td>
             <td>
-                <p th:text="${treatment.startOfTreatment}">
-            </td>
-            <td>
-                <p th:text="${treatment.endOfTreatment}">
+                <p th:text="${#dates.format(treatment.endOfTreatment, 'dd-MM-yyyy HH:mm')}">
             </td>
             <td>
                 <div sec:authorize="hasAuthority('PATIENT')">
-                    <form th:action="@{/patient/appointment/{treatmentId}/edit(treatmentId=${treatment.id})}" method="post">
+                    <form th:action="@{/patient/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Edit</button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAuthority('DOCTOR')">
+                    <form th:action="@{/doctor/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Edit</button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <form th:action="@{/admin/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Edit</button>
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div sec:authorize="hasAuthority('PATIENT')">
+                    <form th:action="@{/patient/treatment/delete/{treatmentId}(treatmentId=${treatment.id})}" method="post">
                         <button class="btn btn-outline-danger btn-sm">Delete</button>
                     </form>
                 </div>
                 <div sec:authorize="hasAuthority('DOCTOR')">
-                    <form th:action="@{/doctor/appointment/{treatmentId}/edit(treatmentId=${treatment.id})}" method="post">
+                    <form th:action="@{/doctor/treatment/delete/{treatmentId}(treatmentId=${treatment.id})}" method="post">
                         <button class="btn btn-outline-danger btn-sm">Delete</button>
                     </form>
                 </div>
                 <div sec:authorize="hasAuthority('ADMIN')">
-                    <form th:action="@{/admin/appointment/{treatmentId}/edit(treatmentId=${treatment.id})}" method="post">
+                    <form th:action="@{/admin/treatment/delete/{treatmentId}(treatmentId=${treatment.id})}" method="post">
                         <button class="btn btn-outline-danger btn-sm">Delete</button>
                     </form>
                 </div>
-
             </td>
         </tr>
         </tbody>

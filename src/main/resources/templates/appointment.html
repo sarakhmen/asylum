@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,53 +10,66 @@
 </head>
 
 <body>
-<div th:insert ="header.html"></div>
+<div th:insert="header.html"></div>
 <div class="container">
- <table class="table">
-     <thead>
-     <tr>
-         <th scope="col">Patient</th>
-         <th scope="col">Doctor</th>
-         <th scope="col">Date</th>
-         <th></th>
-         <th></th>
-     </tr>
-     </thead>
-     <tbody th:each="appointment: ${appointments}">
-     <tr>
-         <td>
-             <p th:text="${appointment.patient.firstName}"></p>
-             <p th:text="${appointment.patient.secondName}"></p>
-         </td>
-         <td>
-             <p th:text="${appointment.doctor.userFirstName}"></p>
-             <p th:text="${appointment.doctor.userSecondName}"></p>
-             <p th:text="${appointment.doctor.position}"></p>
-         </td>
-         <td>
-             <p th:text="${appointment.dateOfAppointment}">
-         </td>
-         <td>
-             <div sec:authorize="hasAuthority('PATIENT')">
-                 <form th:action="@{/patient/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}" method="post">
-                     <button class="btn btn-outline-danger btn-sm">Delete</button>
-                 </form>
-             </div>
-             <div sec:authorize="hasAuthority('DOCTOR')">
-                 <form th:action="@{/doctor/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}" method="post">
-                     <button class="btn btn-outline-danger btn-sm">Delete</button>
-                 </form>
-             </div>
-             <div sec:authorize="hasAuthority('ADMIN')">
-                 <form th:action="@{/admin/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}" method="post">
-                     <button class="btn btn-outline-danger btn-sm">Delete</button>
-                 </form>
-             </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Patient</th>
+            <th scope="col">Doctor</th>
+            <th scope="col">Date</th>
+            <div sec:authorize="hasAuthority('DOCTOR')">
+                <th></th>
+            </div>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody th:each="appointment: ${appointments}">
+        <tr>
+            <td>
+                <p th:text="${appointment.patient.firstName}"></p>
+                <p th:text="${appointment.patient.secondName}"></p>
+            </td>
+            <td>
+                <p th:text="${appointment.doctor.userFirstName}"></p>
+                <p th:text="${appointment.doctor.userSecondName}"></p>
+                <p th:text="${appointment.doctor.positionName}"></p>
+            </td>
+            <td>
+                <p th:text="${appointment.dateOfAppointment}">
+            </td>
+            <td>
+                <div sec:authorize="hasAuthority('DOCTOR')">
+                    <form th:action="@{/doctor/treatment/create/{appointmentId}(appointmentId=${appointment.id})}"
+                          method="post">
+                        <button class="btn btn-outline-danger btn-sm">Start treatment</button>
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div sec:authorize="hasAuthority('PATIENT')">
+                    <form th:action="@{/patient/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}"
+                          method="post">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAuthority('DOCTOR')">
+                    <form th:action="@{/doctor/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}"
+                          method="post">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <form th:action="@{/admin/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}"
+                          method="post">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
 
-         </td>
-     </tr>
-     </tbody>
- </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

@@ -2,11 +2,14 @@ package com.brawlstars.asylum.controller;
 
 import com.brawlstars.asylum.dto.AppointmentDto;
 import com.brawlstars.asylum.dto.AppointmentRequestDto;
+import com.brawlstars.asylum.dto.TreatmentDto;
 import com.brawlstars.asylum.model.Appointment;
 import com.brawlstars.asylum.model.RequestAppointment;
+import com.brawlstars.asylum.model.Treatment;
 import com.brawlstars.asylum.model.User;
 import com.brawlstars.asylum.service.AppointmentService;
 import com.brawlstars.asylum.service.RequestAppointmentService;
+import com.brawlstars.asylum.service.TreatmentService;
 import com.brawlstars.asylum.util.ObjectMapperUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,8 @@ public class PatientController {
     AppointmentService appointmentService;
     @Autowired
     RequestAppointmentService requestAppointmentService;
+    @Autowired
+    TreatmentService treatmentService;
 
     @GetMapping("/appointment")
     public String appointmentsView(Principal principal, Model model) {
@@ -81,5 +86,19 @@ public class PatientController {
         System.out.println(requestAppointment);
         requestAppointmentService.save(requestAppointment);
         return "redirect:/patient/appointment/request";
+    }
+
+    @GetMapping("/treatment")
+    public String userTreatments(Principal principal, Model model) {
+        List<Treatment> treatmentList = treatmentService.getAllTreatmentsForPatient(principal.getName());
+        List<TreatmentDto> treatmentDtoList = ObjectMapperUtils.mapAll(treatmentList, TreatmentDto.class);
+        model.addAttribute("treatments", treatmentDtoList);
+        return "treatment";
+    }
+
+    @PostMapping("/treatment/delete/{treatmentId}")
+    public String deleteTreatment(@PathVariable int treatmentId){
+        treatmentService.deleteTreatmentById(treatmentId);
+        return "redirect:/patient/treatment";
     }
 }

@@ -1,6 +1,8 @@
 package com.brawlstars.asylum.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -34,9 +36,11 @@ public class Treatment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User patient;
 
     @ManyToMany(cascade = CascadeType.MERGE)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @JoinTable(name = "treatment_diagnos",
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "diagnos_id"))
