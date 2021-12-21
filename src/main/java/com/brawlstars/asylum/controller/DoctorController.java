@@ -33,7 +33,7 @@ public class DoctorController {
         return "appointment";
     }
 
-    @PostMapping( "/doctor/appointment/delete/{appointmentId}")
+    @PostMapping( "/appointment/delete/{appointmentId}")
     public String deleteAppointment(@PathVariable int appointmentId){
         appointmentService.deleteAppointmentById(appointmentId);
         return "redirect:/doctor/appointment";

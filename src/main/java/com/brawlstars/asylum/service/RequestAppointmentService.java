@@ -17,6 +17,9 @@ public class RequestAppointmentService {
     RequestAppointmentService(RequestAppointmentRepository requestAppointmentRepository){
         this.requestAppointmentRepository = requestAppointmentRepository;
     }
+    public List<RequestAppointment> getAllRequestAppointments() {
+        return requestAppointmentRepository.findAll();
+    }
 
     public List<RequestAppointment> getAllRequestAppointmentsByPatientEmail(String email) {
         return requestAppointmentRepository.findAllByUserEmail(email);
@@ -26,7 +29,12 @@ public class RequestAppointmentService {
         requestAppointmentRepository.delete(requestAppointment);
         requestAppointment.setStatus(AppointmentStatus.DECLINED);
         requestAppointmentRepository.save(requestAppointment);
-
+    }
+    public void deleteRequestAppointmentById(int appointmentId){
+        requestAppointmentRepository.deleteById(appointmentId);
+    }
+    public RequestAppointment getById(int requestAppointmentId){
+        return requestAppointmentRepository.getById(requestAppointmentId);
     }
 
     public void save(RequestAppointment requestAppointment){
