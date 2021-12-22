@@ -12,29 +12,31 @@
 
 </head>
 <body class="sub_page">
-<div th:insert="header.html"></div>
-<!-- about section -->
-<section class="about_section layout_padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="detail-box">
-                    <div class="heading_container">
-                        <h2>
-                            Text
-                        </h2>
+<div class="top_area">
+    <!-- header section starts -->
+    <div th:insert="header.html"></div>
+    <!-- end header section -->
+    <!-- about section -->
+    <section class="about_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="detail-box">
+                        <div class="heading_container">
+                            <h2>
+                                Text
+                            </h2>
+                        </div>
+                        <p>
+                            text
+                        </p>
                     </div>
-                    <p>
-                        text
-                    </p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- end about section -->
-
+    </section>
+    <!-- end about section -->
+</div>
 <!-- footer section -->
 <div th:insert="footer.html"></div>
 <!-- footer section -->

@@ -8,55 +8,62 @@
     <link rel="stylesheet" th:href="@{/css/css.css}"/>
 </head>
 <body>
-<div class="top_area">
-    <header class="header_section">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg custom_nav-container">
-                <a class="navbar-brand" th:href="@{/mainPage}"><span>Personal cabinet</span></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class=""> </span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item" sec:authorize="hasAuthority('DOCTOR')">
-                            <a class="btn btn-outline-light" th:href="@{/doctor/appointment}">Appointments</a>
-                        </li>
-                        <li class="nav-item" sec:authorize="hasAuthority('DOCTOR')">
-                            <a class="btn btn-outline-light" th:href="@{/doctor/treatment}">Treatments</a>
-                        </li>
-                        <li class="nav-item" sec:authorize="hasAuthority('PATIENT')">
-                            <a class="btn btn-outline-light" th:href="@{/patient/appointment}">Appointments</a>
-                            <a class="btn btn-outline-light" th:href="@{/patient/appointment/request}">Request
-                                appointment</a>
-                        </li>
-                        <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
-                            <a class="btn btn-outline-light" th:href="@{/admin/appointment}">Appointments</a>
-                            <a class="btn btn-outline-light" th:href="@{/admin/appointmentRequest}">Appointment
-                                requests</a>
-                        </li>
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link" href="index.html">Home</a>-->
-<!--                        </li>-->
+<header class="header_section">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" th:href="@{/index}"> <span >Hospital System </span> </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item  active">
+                        <a class="nav-link" th:href="@{/index}">Home</a>
+                    </li>
+                    <div sec:authorize="isAuthenticated()">
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html"> About </a>
+                            <a class="nav-link" th:href="@{/mainPage}">Personal cabinet</a>
                         </li>
-                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                    </div>
+                    <li class="nav-item" sec:authorize="hasAuthority('DOCTOR')">
+                        <a class="btn btn-outline-light" th:href="@{/doctor/appointment}">Appointments</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAuthority('DOCTOR')">
+                        <a class="btn btn-outline-light" th:href="@{/doctor/treatment}">Treatments</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAuthority('PATIENT')">
+                        <a class="btn btn-outline-light" th:href="@{/patient/appointment}">Appointments</a>
+                        <a class="btn btn-outline-light" th:href="@{/patient/appointment/request}">Request
+                            appointment</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+                        <a class="btn btn-outline-light" th:href="@{/admin/appointment}">Appointments</a>
+                        <a class="btn btn-outline-light" th:href="@{/admin/appointmentRequest}">Appointment
+                            requests</a>
+                    </li>
+                    <li class="nav-item  active">
+                        <a class="nav-link" href="about.html"> About </a>
+                    </li>
+                    <div sec:authorize="isAnonymous()">
+                        <li class="nav-item">
+                            <a th:href="@{/login}" class="btn btn-outline-light">Log In</a>
+                        </li>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <div class="d-flex">
                             <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
                                 Log out
                             </button>
-                        </li>
-                    </ul>
-                    <div class="d-flex" sec:authorize="isAnonymous()">
-                        <a th:href="@{/login}" class="btn btn-outline-light">Log In</a>
+                        </div>
                     </div>
-                </div>
-            </nav>
-        </div>
-    </header>
-</div>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
