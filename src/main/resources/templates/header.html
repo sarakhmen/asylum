@@ -22,13 +22,16 @@
                     <li class="nav-item  active">
                         <a class="nav-link" th:href="@{/index}">Home</a>
                     </li>
-                    <div sec:authorize="hasAuthority('DOCTOR') or hasAuthority('PATIENT') or hasAuthority('ADMIN')">
+                    <div sec:authorize="isAuthenticated()">
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/mainPage}">Personal cabinet</a>
                         </li>
                     </div>
                     <li class="nav-item" sec:authorize="hasAuthority('DOCTOR')">
                         <a class="btn btn-outline-light" th:href="@{/doctor/appointment}">Appointments</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAuthority('DOCTOR')">
+                        <a class="btn btn-outline-light" th:href="@{/doctor/treatment}">Treatments</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAuthority('PATIENT')">
                         <a class="btn btn-outline-light" th:href="@{/patient/appointment}">Appointments</a>
@@ -48,7 +51,7 @@
                             <a th:href="@{/login}" class="btn btn-outline-light">Log In</a>
                         </li>
                     </div>
-                    <div sec:authorize="hasAuthority('DOCTOR') or hasAuthority('PATIENT') or hasAuthority('ADMIN')">
+                    <div sec:authorize="isAuthenticated()">
                         <div class="d-flex">
                             <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
