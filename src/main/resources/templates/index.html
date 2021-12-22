@@ -29,8 +29,13 @@
                         <p>
                             text
                         </p>
-                        <div class="btn-box">
-                            <a href="" class="btn1">
+                        <div class="btn-box" sec:authorize="isAnonymous()">
+                            <a th:href="@{/login}" class="btn1">
+                                START
+                            </a>
+                        </div>
+                        <div class="btn-box" sec:authorize="hasAuthority('DOCTOR') or hasAuthority('PATIENT') or hasAuthority('ADMIN')">
+                            <a th:href="@{/mainPage}" class="btn1">
                                 START
                             </a>
                         </div>
