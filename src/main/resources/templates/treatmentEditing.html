@@ -45,11 +45,7 @@
           <div th:each="diagnose: ${treatment.diagnoses}">
             <p th:text="${diagnose.name}"></p>
           </div>
-          <a th:action="@{/doctor/treatment/diagnoses/{treatmentId}(treatmentId=${treatment.id})}">
-            <button class="btn btn-primary">
-              Manage diagnoses
-            </button>
-          </a>
+
       </div>
       <div class="mb-3">
         <label for="chamber" class="form-label">
@@ -67,9 +63,14 @@
         <span th:if="${#fields.hasErrors('methodsOfTreatment')}"
               th:errors="*{methodsOfTreatment}" style="color: red"></span>
       </div>
-      <button type="submit" class="btn btn-primary">Save
+      <button type="submit" class="btn btn-primary">Edit
       </button>
     </form>
+    <a th:href="@{/doctor/treatment/diagnose/{treatmentId}(treatmentId=${treatment.id})}">
+      <button class="btn btn-primary">
+        Manage diagnoses
+      </button>
+    </a>
   </div>
 </div>
 </body>

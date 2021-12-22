@@ -6,14 +6,14 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "diagnos")
-public class Diagnos {
+@Table(name = "diagnose")
+public class Diagnose {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "description")
