@@ -54,14 +54,14 @@
                     <label for="inputDiagnoseName" class="form-label">Enter diagnose name:</label>
                     <input type="text" th:field="*{name}" class="form-control" id="inputDiagnoseName"
                            placeholder="Name of the diagnose to add">
+
+
                     <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></span>
                 </div>
                 <div class="mb-3">
                     <label for="inputDiagnoseDescription" class="form-label">Input diagnose description:</label>
-                    <input type="text" th:field="*{description}" class="form-control" id="inputDiagnoseDescription"
-                           placeholder="Diagnose description">
-                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
-                          style="color: red"></span>
+                    <input type="text" th:field="*{description}" class="form-control" id="inputDiagnoseDescription" placeholder="Diagnose description">
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red"></span>
                 </div>
                 <button type="submit" class="btn btn-primary">Add diagnose</button>
             </form>

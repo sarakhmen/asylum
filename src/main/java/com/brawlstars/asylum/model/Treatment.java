@@ -15,7 +15,7 @@ import java.util.Set;
 public class Treatment {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "methods_of_treatment")
@@ -35,18 +35,20 @@ public class Treatment {
     private Integer chamber;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "user_id")
     private User patient;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @JoinTable(name = "treatment_diagnos",
+    @JoinTable(name = "treatment_diagnose",
             joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "diagnos_id"))
-    private Set<Diagnos> diagnoses;
+            inverseJoinColumns = @JoinColumn(name = "diagnose_id"))
+    private Set<Diagnose> diagnoses;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 

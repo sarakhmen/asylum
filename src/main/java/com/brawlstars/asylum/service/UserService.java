@@ -2,6 +2,7 @@ package com.brawlstars.asylum.service;
 
 
 import com.brawlstars.asylum.model.Role;
+import com.brawlstars.asylum.model.Treatment;
 import com.brawlstars.asylum.model.User;
 import com.brawlstars.asylum.repository.RoleRepository;
 import com.brawlstars.asylum.repository.UserRepository;
