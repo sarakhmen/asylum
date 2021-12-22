@@ -52,7 +52,6 @@ public class TreatmentService {
         treatment.setPatient(appointment.getPatient());
         treatment.setDoctor(appointment.getDoctor());
         treatment.setStartOfTreatment(appointment.getDate());
-        treatment.setEndOfTreatment(Calendar.getInstance());
         treatment = treatmentRepository.save(treatment);
         appointment.setStatus(AppointmentStatus.ACCEPTED);
         return treatment;

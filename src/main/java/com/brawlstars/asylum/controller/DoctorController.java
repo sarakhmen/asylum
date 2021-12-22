@@ -61,20 +61,40 @@ public class DoctorController {
     @GetMapping("treatment/edit/{treatmentId}")
     public String editTreatmentView(@PathVariable int treatmentId, Model model){
         Treatment treatmentModel = treatmentService.getTreatmentById(treatmentId);
-        TreatmentDto treatmentDto = ObjectMapperUtils.map(treatmentModel, TreatmentDto.class);
-        model.addAttribute("treatment", treatmentDto);
+        TreatmentDto newTreatmentDto = ObjectMapperUtils.map(treatmentModel, TreatmentDto.class);
+        if (model.containsAttribute("treatmentEditErrors")) {
+            model.addAttribute("org.springframework.validation.BindingResult.treatment",
+                    model.getAttribute("treatmentEditErrors"));
+            TreatmentDto treatmentDto = (TreatmentDto)model.getAttribute("treatment");
+            treatmentDto.setId(newTreatmentDto.getId());
+            treatmentDto.setDoctor(newTreatmentDto.getDoctor());
+            treatmentDto.setPatient(newTreatmentDto.getPatient());
+            treatmentDto.setDiagnoses(newTreatmentDto.getDiagnoses());
+            treatmentDto.setStartOfTreatment(newTreatmentDto.getStartOfTreatment());
+        }
+        else{
+            model.addAttribute("treatment", newTreatmentDto);
+        }
         return "treatmentEditing";
     }
 
     @PostMapping("treatment/edit/{treatmentId}")
     public String editTreatment(@PathVariable int treatmentId, @Valid @ModelAttribute("treatment") TreatmentDto treatmentDto,
-                                BindingResult bindingResult){
-        //should be further validated
+                                BindingResult bindingResult, RedirectAttributes redirectAttributes){
         Treatment treatmentModel = treatmentService.getTreatmentById(treatmentId);
-        TreatmentDto customizedTreatment = ObjectMapperUtils.map(treatmentModel, TreatmentDto.class);
-        customizedTreatment.setEndOfTreatment(treatmentDto.getEndOfTreatment());
-        customizedTreatment.setMethodsOfTreatment(treatmentDto.getMethodsOfTreatment());
-        customizedTreatment.setChamber(treatmentDto.getChamber());
+        if(treatmentDto.getEndOfTreatment() != null && treatmentModel.getStartOfTreatment().compareTo(treatmentDto.getEndOfTreatment()) > 0){
+            bindingResult.rejectValue("endOfTreatment", "",
+                    "*End of treatment date must not be before start date");
+        }
+        if (bindingResult.hasErrors()) {
+            log.error("Errors: " + bindingResult.getAllErrors());
+            redirectAttributes.addFlashAttribute("treatmentEditErrors", bindingResult);
+            redirectAttributes.addFlashAttribute("treatment", treatmentDto);
+            return "redirect:/doctor/treatment/edit/" + treatmentId;
+        }
+        treatmentModel.setEndOfTreatment(treatmentDto.getEndOfTreatment());
+        treatmentModel.setMethodsOfTreatment(treatmentDto.getMethodsOfTreatment());
+        treatmentModel.setChamber(treatmentDto.getChamber());
         treatmentService.saveTreatment(treatmentModel);
         return "redirect:/doctor/treatment";
     }
