@@ -15,7 +15,7 @@ import java.util.Set;
 public class Treatment {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "methods_of_treatment")

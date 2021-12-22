@@ -11,7 +11,11 @@
     <link rel="stylesheet" th:href="@{/css/css.css}"/>
 </head>
 <body class="sub_page">
-<div th:insert="header.html"></div>
+<div class="top_area">
+    <!-- header section starts -->
+    <div th:insert="header.html"></div>
+    <!-- end header section -->
+</div>
 <div class="container">
     <h2>Epicrisis creation</h2>
     <form th:action="@{admin/createEpicrisis}" th:object="${epicrisis}" method="post">
