@@ -51,17 +51,17 @@
             </td>
             <td>
                 <div sec:authorize="hasAuthority('PATIENT')">
-                    <form th:action="@{/patient/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                    <form th:action="@{/patient/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="get">
                         <button class="btn btn-outline-danger btn-sm">Edit</button>
                     </form>
                 </div>
                 <div sec:authorize="hasAuthority('DOCTOR')">
-                    <form th:action="@{/doctor/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                    <form th:action="@{/doctor/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="get">
                         <button class="btn btn-outline-danger btn-sm">Edit</button>
                     </form>
                 </div>
                 <div sec:authorize="hasAuthority('ADMIN')">
-                    <form th:action="@{/admin/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                    <form th:action="@{/admin/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="get">
                         <button class="btn btn-outline-danger btn-sm">Edit</button>
                     </form>
                 </div>

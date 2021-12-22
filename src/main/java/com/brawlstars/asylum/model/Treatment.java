@@ -41,10 +41,10 @@ public class Treatment {
     @ManyToMany(cascade = CascadeType.MERGE)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @JoinTable(name = "treatment_diagnos",
+    @JoinTable(name = "treatment_diagnose",
             joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "diagnos_id"))
-    private Set<Diagnos> diagnoses;
+            inverseJoinColumns = @JoinColumn(name = "diagnose_id"))
+    private Set<Diagnose> diagnoses;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")
