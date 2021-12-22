@@ -15,7 +15,7 @@ import java.util.Set;
 public class Treatment {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "methods_of_treatment")
@@ -35,6 +35,7 @@ public class Treatment {
     private Integer chamber;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "user_id")
     private User patient;
 
@@ -47,6 +48,7 @@ public class Treatment {
     private Set<Diagnose> diagnoses;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
