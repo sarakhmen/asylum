@@ -11,7 +11,7 @@
 <header class="header_section">
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="index.html"> <span >Hospital System </span> </a>
+            <a class="navbar-brand" th:href="@{/index}"> <span >Hospital System </span> </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class=""> </span>
@@ -27,6 +27,19 @@
                             <a class="nav-link" th:href="@{/mainPage}">Personal cabinet</a>
                         </li>
                     </div>
+                    <li class="nav-item" sec:authorize="hasAuthority('DOCTOR')">
+                        <a class="btn btn-outline-light" th:href="@{/doctor/appointment}">Appointments</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAuthority('PATIENT')">
+                        <a class="btn btn-outline-light" th:href="@{/patient/appointment}">Appointments</a>
+                        <a class="btn btn-outline-light" th:href="@{/patient/appointment/request}">Request
+                            appointment</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+                        <a class="btn btn-outline-light" th:href="@{/admin/appointment}">Appointments</a>
+                        <a class="btn btn-outline-light" th:href="@{/admin/appointmentRequest}">Appointment
+                            requests</a>
+                    </li>
                     <li class="nav-item  active">
                         <a class="nav-link" href="about.html"> About </a>
                     </li>
