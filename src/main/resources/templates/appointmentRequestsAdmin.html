@@ -23,6 +23,8 @@
             <th scope="col">Doctor position</th>
             <th scope="col">User email</th>
             <th scope="col">Status</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody th:each="request: ${appointments}">
@@ -42,7 +44,7 @@
             <td>
                 <div class="row">
                     <div class="col-2">
-                        <form th:action="@{/admin/requestAppointment/accept/{id}(id=${request.id})}" method="post">
+                        <form th:action="@{/admin/requestAppointment/accept/{id}(id=${request.id})}">
                             <button class="btn btn-outline-success btn-sm">Accept</button>
                         </form>
                     </div>

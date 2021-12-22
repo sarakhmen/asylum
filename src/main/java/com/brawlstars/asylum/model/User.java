@@ -66,6 +66,8 @@ public class User {
     private Doctor doctor;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<RequestAppointment> requestAppointments;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)

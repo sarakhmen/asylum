@@ -25,6 +25,7 @@
             <th scope="col">End date</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody th:each="treatment: ${treatments}">
@@ -51,17 +52,17 @@
             </td>
             <td>
                 <div sec:authorize="hasAuthority('PATIENT')">
-                    <form th:action="@{/patient/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                    <form th:action="@{/patient/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="get">
                         <button class="btn btn-outline-danger btn-sm">Edit</button>
                     </form>
                 </div>
                 <div sec:authorize="hasAuthority('DOCTOR')">
-                    <form th:action="@{/doctor/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                    <form th:action="@{/doctor/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="get">
                         <button class="btn btn-outline-danger btn-sm">Edit</button>
                     </form>
                 </div>
                 <div sec:authorize="hasAuthority('ADMIN')">
-                    <form th:action="@{/admin/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                    <form th:action="@{/admin/treatment/edit/{treatmentId}(treatmentId=${treatment.id})}" method="get">
                         <button class="btn btn-outline-danger btn-sm">Edit</button>
                     </form>
                 </div>
@@ -80,6 +81,13 @@
                 <div sec:authorize="hasAuthority('ADMIN')">
                     <form th:action="@{/admin/treatment/delete/{treatmentId}(treatmentId=${treatment.id})}" method="post">
                         <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div sec:authorize="hasAuthority('DOCTOR')">
+                    <form th:action="@{/doctor/treatment/createEpicriz/{treatmentId}(treatmentId=${treatment.id})}" method="post">
+                        <button class="btn btn-outline-danger btn-sm">Epicrease</button>
                     </form>
                 </div>
             </td>

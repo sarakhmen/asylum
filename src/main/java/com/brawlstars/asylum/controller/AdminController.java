@@ -3,9 +3,14 @@ package com.brawlstars.asylum.controller;
 import com.brawlstars.asylum.dto.*;
 import com.brawlstars.asylum.model.*;
 import com.brawlstars.asylum.service.*;
+import com.brawlstars.asylum.util.GeneratePDFInfo;
 import com.brawlstars.asylum.util.ObjectMapperUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,9 +98,6 @@ public class AdminController {
                                              BindingResult bindingResult, HttpServletRequest request) {
         AppointmentCreationDto appointmentCreationDto = (AppointmentCreationDto) request.getSession().getAttribute("appointmentAttribute");
 
-        System.out.println("/n/n"+ appointmentCreationDto);
-        System.out.println(appointment+"\n\n");
-
         Optional<Doctor> doctorExist = Optional
                 .ofNullable(doctorService
                         .getDoctorByUserEmail(appointment.getDoctorEmail()));
@@ -151,4 +154,5 @@ public class AdminController {
         model.addAttribute(treatment);
         return "epicrisisResult";
     }
+
 }

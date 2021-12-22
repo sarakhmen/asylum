@@ -16,54 +16,54 @@
     <!-- end header section -->
 </div>
 <div class="container">
-    <div class="col-6">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">Doctor position</th>
-                <th scope="col">Status</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody th:each="requests: ${requests}">
-            <tr>
-                <td>
-                    <p th:text="${requests.id}"></p>
-                </td>
-                <td>
-                    <p th:text="${requests.doctorPosition}"></p>
-                </td>
-                <td>
-                    <p th:text="${requests.status}"></p>
-                </td>
-                <td>
-                    <div th:if="${requests.status.name() != 'DECLINED'}">
-                        <form th:action="@{/patient/requestAppointment/decline/{id}(id=${requests.id})}" method="post">
-                            <button class="btn btn-outline-danger btn-sm">Decline</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-3">
+    <div class="row">
+        <div class="col-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Doctor position</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody th:each="requests: ${requests}">
+                <tr>
+                    <td>
+                        <p th:text="${requests.id}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${requests.doctorPosition}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${requests.status}"></p>
+                    </td>
+                    <td>
+                        <div th:if="${requests.status.name() != 'DECLINED'}">
+                            <form th:action="@{/patient/requestAppointment/decline/{id}(id=${requests.id})}" method="post">
+                                <button class="btn btn-outline-danger btn-sm">Decline</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-    </div>
-    <div class="col-3">
-        <form th:action="@{/patient/create/requestAppointment}" th:object="${requestAppointment}" method="post">
-            <div class="mb-3">
-                <label for="inputPosition" class="form-label">
-                    Input doctor request position
-                </label>
-                <input type="text" th:field="*{doctorPosition}" class="form-control" id="inputPosition"
-                       placeholder="doctor">
-                <span th:if="${#fields.hasErrors('doctorPosition')}" th:errors="*{doctorPosition}"
-                      style="color: red"></span>
-                <button type="submit" class="btn btn-primary">Create</button>
-            </div>
-        </form>
+        <div class="col-3">
+            <form th:action="@{/patient/create/requestAppointment}" th:object="${requestAppointment}" method="post">
+                <div class="mb-3">
+                    <label for="inputPosition" class="form-label">
+                        Input doctor request position
+                    </label>
+                    <input type="text" th:field="*{doctorPosition}" class="form-control" id="inputPosition"
+                           placeholder="doctor">
+                    <span th:if="${#fields.hasErrors('doctorPosition')}" th:errors="*{doctorPosition}"
+                          style="color: red"></span>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>
