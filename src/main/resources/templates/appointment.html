@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/css/css.css}"/>
 </head>
 <body class="sub_page">
-<div th:insert ="header.html"></div>
+<div th:insert="header.html"></div>
 <div class="container">
 <!--    <div class="d-flex justify-content-end" style="margin-top: 2%" sec:authorize="hasAuthority('ADMIN')">-->
 <!--        <a class="btn btn-outline-primary" th:href="@{/admin/appointment/create}">Create a new appointment</a>-->
@@ -27,8 +27,8 @@
         <tbody th:each="appointment: ${appointments}">
         <tr>
             <td>
-                        <p th:text="${appointment.patient.firstName}"></p>
-                        <p th:text="${appointment.patient.secondName}"></p>
+                <p th:text="${appointment.patient.firstName}"></p>
+                <p th:text="${appointment.patient.secondName}"></p>
             </td>
             <td>
                 <p th:text="${appointment.doctor.userFirstName}"></p>
@@ -40,14 +40,14 @@
             </td>
             <td>
                 <div class="row">
-                <div class="col-2">
-                    <div sec:authorize="hasAuthority('DOCTOR')">
-                        <form th:action="@{/doctor/treatment/create/{appointmentId}(appointmentId=${appointment.id})}"
-                              method="post">
-                            <button class="btn btn-outline-danger btn-sm">Start treatment</button>
-                        </form>
+                    <div class="col-2">
+                        <div sec:authorize="hasAuthority('DOCTOR')">
+                            <form th:action="@{/doctor/treatment/create/{appointmentId}(appointmentId=${appointment.id})}"
+                                  method="post">
+                                <button class="btn btn-outline-danger btn-sm">Start treatment</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
                     <div class="col-2">
                         <div sec:authorize="hasAuthority('PATIENT')">
                             <form th:action="@{/patient/appointment/delete/{appointmentId}(appointmentId=${appointment.id})}"
