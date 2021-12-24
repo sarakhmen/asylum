@@ -9,7 +9,7 @@ REPLACE INTO user(id, email, password, first_name, second_name, patronymic, addr
     VALUES (2, 'test1@test', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'Артур', 'Сарахман', 'Олегович', 'Kyiv', '+380971266262', '2001-09-15');
 REPLACE INTO user_role(id, role_id) VALUES (2, 3);
 REPLACE INTO user(id, email, password, first_name, second_name, patronymic, address, phone, date_of_birth)
-    VALUES (3, 'test2@test', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'Test', 'Test', 'Test', 'Kyiv', '+380971266262', '2001-09-15');
+    VALUES (3, 'test2@test', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'Тетяна', 'Кушнірук', 'Олександрівна', 'Kyiv', '+380969874634', '2003-03-29');
 REPLACE INTO user_role(id, role_id) VALUES (3, 3);
 REPLACE INTO user(id, email, password, first_name, second_name, patronymic, address, phone, date_of_birth)
     VALUES (4, 'test3@test', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'Test', 'Test', 'Test', 'Kyiv', '+380971266262', '2001-09-15');
@@ -18,13 +18,13 @@ REPLACE INTO user(id, email, password, first_name, second_name, patronymic, addr
     VALUES (5, 'test4@test', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'Test', 'Test', 'Test', 'Kyiv', '+380971266262', '2001-09-15');
 REPLACE INTO user_role(id, role_id) VALUES (5, 3);
 REPLACE INTO user(id, email, password, first_name, second_name, patronymic, address, phone, date_of_birth)
-VALUES (6, 'doctor1@doctor', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'doctor', 'doctor', 'doctor', 'Kyiv', '+380971266262', '2001-09-15');
+VALUES (6, 'doctor1@doctor', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'Кирило', 'Сокирка', 'Вікторович', 'Kyiv', '+380971266265', '2001-09-15');
 REPLACE INTO user_role(id, role_id) VALUES (6, 2);
 REPLACE INTO user(id, email, password, first_name, second_name, patronymic, address, phone, date_of_birth)
 VALUES (7, 'doctor2@doctor', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'Богдан', 'Чуй', 'Сергійович', 'Kyiv', '+380971266262', '2001-09-15');
 REPLACE INTO user_role(id, role_id) VALUES (7, 2);
 REPLACE INTO user(id, email, password, first_name, second_name, patronymic, address, phone, date_of_birth)
-VALUES (8, 'doctor3@doctor', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'doctor', 'doctor', 'doctor', 'Kyiv', '+380971266262', '2001-09-15');
+VALUES (8, 'doctor3@doctor', '$2a$10$uGtcWDvECRAQABQXW.5h9ewpmKoByySxnLWYzHiVLDebmKvgpcWRW', 'Галина', 'Шевчук', 'Андріївна', 'Kyiv', '+380938372131', '1968-05-06');
 REPLACE INTO user_role(id, role_id) VALUES (8, 2);
 
 REPLACE INTO diagnose(id, description, name) VALUES (1,'descriprion1', 'diagnos1');

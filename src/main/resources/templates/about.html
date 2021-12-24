@@ -8,37 +8,107 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>About</title>
-    <link rel="stylesheet" th:href="@{/css/css.css}"/>
+<!--    <link rel="stylesheet" th:href="@{/css/css.css}"/>-->
+    <link rel="stylesheet" type="text/css" href="D:\kpi\2\bd\asylum\src\main\resources\static\css\css.css"/>
 
 </head>
 <body class="sub_page">
 <div class="top_area">
     <!-- header section starts -->
-    <div th:insert="header.html"></div>
-    <!-- end header section -->
-    <!-- about section -->
-    <section class="about_section layout_padding">
+    <header class="header_section">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="detail-box">
-                        <div class="heading_container">
-                            <h2>
-                                Text
-                            </h2>
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" th:href="@{/index}"> <span >Hospital System </span> </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item  active">
+                            <a class="nav-link" th:href="@{/index}">Home</a>
+                        </li>
+                        <li class="nav-item  active">
+                            <a class="nav-link" href="about.html"> About </a>
+                        </li>
+                        <div sec:authorize="isAnonymous()">
+                            <li class="nav-item">
+                                <a th:href="@{/login}" class="btn btn-outline-light">Log In</a>
+                            </li>
                         </div>
-                        <p>
-                            text
-                        </p>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- end header section -->
+</div>
+<!-- about section -->
+<section class="about_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-15">
+                <div class="detail-box">
+                    <div class="heading_container">
+                        <h2>
+                            Hospital system
+                        </h2>
+                    </div>
+                    <p>
+                        The system is designed to process data about doctors, patients, patient admission and treatment. The system should issue reports at the request of a doctor or administration.
+                        Before admission to the hospital, a meeting between the doctor and the patient is held. The doctor informs the department admission of patients, about the expected admission of the patient. Each new patient is assigned registration number. The patient must be registered in the system before admission to the hospital (his data is recorded: full name, address, date of birth, etc.).
+                        <br><br>
+                        After a while, the doctor draws up an appointment with the patient. In this case, he is assigned an ordinal number and the reception data is recorded. After that, the patient reception department sends the doctor confirmation of admission. This message includes the patient's registration number, full name, sequential number of admission, start date of healing, department, room number. If the patient is not remembers its registration number, the request is executed.
+                        <br><br>
+                        After registration, the patient receives a registration card containing information about him.
+                        <br><br>
+                        While in the hospital, the patient can be treated by several doctors, each of them prescribes one or more treatments. The data on the courses of treatment are transmitted to the Secretariat, which coordinates the treatment of patients. The cards are stored there. Data includes number doctor, patient number, sequential number of the patient's appointment, name of the course of treatment, date appointment, time and notes (medical history). If necessary, the doctor can invite the story illness.
+                        <br><br>
+                        After completing the courses of treatment, the doctor decides on the patient's discharge. Forms discharge epicrisis. When the patient is discharged, the data goes to the reception department, where data on discharge and the patient is issued a sick note.
+                        <br><br>
+                        The hospital administration can request a patient report for a certain period of time, a report of diseases over a period of time.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end about section -->
+<!-- footer section -->
+<footer class="footer_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3 footer_col">
+                <div class="footer_contact">
+                    <h4>
+                        Contacts
+                    </h4>
+                    <div class="contact_link_box">
+                        <a href="">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <span>
+                  Kyiv
+                </span>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <span>
+                  +380000000000
+                </span>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span>
+                  brawlstars@gmail.com
+                </span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- end about section -->
-</div>
-<!-- footer section -->
-<div th:insert="footer.html"></div>
+    </div>
+</footer>
 <!-- footer section -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

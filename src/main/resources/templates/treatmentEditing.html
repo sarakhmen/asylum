@@ -49,7 +49,7 @@
             <p th:text="${diagnose.name}"></p>
           </div>
         <p></p><a th:href="@{/doctor/treatment/diagnose/{treatmentId}(treatmentId=${treatment.id})}"
-           class="btn btn-info">Menage diagnoses</a></p>
+           class="btn btn-success">Manage diagnoses</a></p>
       </div>
       <div class="mb-3">
         <label for="chamber" class="form-label">
@@ -60,13 +60,13 @@
       </div>
       <div class="mb-3">
         <label for="treatmentMethods" class="form-label">
-          Input a treatment methods:
+          Input treatment methods:
         </label>
         <input type="text" th:field="*{methodsOfTreatment}" class="form-control" id="treatmentMethods">
         <span th:if="${#fields.hasErrors('methodsOfTreatment')}"
               th:errors="*{methodsOfTreatment}" style="color: red"></span>
       </div>
-      <button type="submit" class="btn btn-primary">Edit
+      <button type="submit" class="btn btn-success">Edit
       </button>
     </form>
   </div>

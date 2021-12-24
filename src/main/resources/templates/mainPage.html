@@ -22,14 +22,11 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="detail-box">
-                    <h1>
-                        TEXT
-                    </h1>
-                    <p>
-                        text
-                    </p>
                     <div class="btn-box">
                         <div sec:authorize="hasAuthority('DOCTOR')">
+                            <h3>
+                                Doctor personal cabinet
+                            </h3>
                             <a class="btn1" th:href="@{/doctor/appointment}">
                                 <button>
                                     GO TO APPOINTMENTS
@@ -37,6 +34,9 @@
                             </a>
                         </div>
                         <div sec:authorize="hasAuthority('PATIENT')">
+                            <h3>
+                                Patient personal cabinet
+                            </h3>
                             <a class="btn1" th:href="@{/patient/appointment}">
                                 <button>
                                     GO TO APPOINTMENTS
@@ -44,6 +44,9 @@
                             </a>
                         </div>
                         <div sec:authorize="hasAuthority('ADMIN')">
+                            <h3>
+                                Admin personal cabinet
+                            </h3>
                             <a class="btn1" th:href="@{/admin/appointment}">
                                 <button>
                                     GO TO APPOINTMENTS
