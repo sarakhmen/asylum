@@ -270,6 +270,10 @@ a:focus {
   font-size: 14px;
 }
 
+.main_section .detail-box h3 {
+  color: #fefefe;
+}
+
 .main_section .detail-box .btn-box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -380,7 +384,9 @@ a:focus {
   border: 1px solid #1fab89;
 }
 
-
+.personalcabinet_section .detail-box h3 {
+  color: #1fab89;
+}
 
 /* login section */
 .login_section {
@@ -420,19 +426,44 @@ a:focus {
   font-size: 14px;
 }
 
-.login_section .img-box {
+/* signup section */
+.signup_section {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  padding: 20px 0 145px 0;
 }
 
-.login_section .img-box img {
-  width: 100%;
-  max-width: 375px;
+.signup_section .row {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
+.signup_section .detail-box {
+  color: #1fab89;
+}
+
+.signup_section .detail-box h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.signup_section .detail-box p {
+  color: #fefefe;
+  font-size: 14px;
+}
+
 
 /*footer section*/
 

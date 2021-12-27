@@ -1,97 +1,101 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Sign up</title>
+    <link rel="stylesheet" th:href="@{/css/css.css}"/>
 </head>
 <body>
-
-<div class="container">
-    <div class="d-flex justify-content-center pt-4 mt-3 fs-4">
-        Sign up
+<div class="top_area">
+    <div class="top_bg_box">
+        <img src="/images/doctor.png" alt="">
     </div>
-    <div class="d-flex justify-content-center pt-3">
-        <form th:action="@{/signup}" th:object="${user}" method="post">
-            <div class="mb-3">
-                <label for="inputEmail" class="form-label">
-                    Input your email
-                </label>
-                <input type="email" th:field="*{email}" class="form-control" id="inputEmail"
-                       placeholder="email">
-                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red"></span>
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+    <!-- header section starts -->
+    <div th:insert="header.html"></div>
+    <!-- end header section -->
+    <!-- signup section -->
+    <section class="signup_section ">
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-15">
+                    <div class="detail-box">
+                        <form class="container py-5 h-100" th:action="@{/signup}" th:object="${user}" method="POST">
+                            <div class="row d-flex justify-content-left align-items-center h-100">
+                                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                                    <div class="card bg-transparent border-light text-white" style="border-radius: 2rem;">
+                                        <div class="card-body p-5 text-center">
+                                            <div class="mb-md-1 mt-md-4 pb-1">
+                                                <h2 class="fw-bold mb-2 text-uppercase">Sign up</h2>
+                                                <p class="text-white-50 mb-4">Fill in all fields to create a new account</p>
+                                                <div class="form-outline form-white mb-2">
+                                                    <input type="email" th:field="*{email}" class="form-control" id="inputEmail">
+                                                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red"></span>
+                                                    <label class="form-label" for="inputEmail">Email</label>
+                                                </div>
+                                                <div class="form-outline form-white mb-2">
+                                                    <input type="password" th:field="*{password}" class="form-control" id="inputPassword">
+                                                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></span>
+                                                    <label class="form-label" for="inputPassword">Password</label>
+                                                </div>
+                                                <div class="form-outline form-white mb-2">
+                                                    <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName">
+                                                    <span th:if="${#fields.hasErrors('firstName')}"
+                                                          th:errors="*{firstName}" style="color: red"></span>
+                                                    <label class="form-label" for="inputFirstName">First name</label>
+                                                </div>
+                                                <div class="form-outline form-white mb-2">
+                                                    <input type="text" th:field="*{secondName}" class="form-control" id="inputSecondName">
+                                                    <span th:if="${#fields.hasErrors('secondName')}"
+                                                          th:errors="*{secondName}" style="color: red"></span>
+                                                    <label class="form-label" for="inputSecondName">Second name</label>
+                                                </div>
+                                                <div class="form-outline form-white mb-2">
+                                                    <input type="text" th:field="*{patronymic}" class="form-control" id="inputPatronymic">
+                                                    <span th:if="${#fields.hasErrors('patronymic')}"
+                                                          th:errors="*{patronymic}" style="color: red"></span>
+                                                    <label class="form-label" for="inputPatronymic">Patronymic</label>
+                                                </div>
+                                                <div class="form-outline form-white mb-2">
+                                                    <input type="text" th:field="*{address}" class="form-control" id="inputAddress">
+                                                    <span th:if="${#fields.hasErrors('address')}"
+                                                          th:errors="*{address}" style="color: red"></span>
+                                                    <label class="form-label" for="inputAddress">Address</label>
+                                                </div>
+                                                <div class="form-outline form-white mb-2">
+                                                    <input type="text" th:field="*{phone}" class="form-control" id="inputPhone"
+                                                           placeholder="+00(00)-00-00-000">
+                                                    <span th:if="${#fields.hasErrors('phone')}"
+                                                          th:errors="*{phone}" style="color: red"></span>
+                                                    <label class="form-label" for="inputPhone">Phone</label>
+                                                </div>
+                                                <div class="form-outline form-white mb-0">
+                                                    <input type="date" th:field="*{dateOfBirth}" class="form-control" id="inputDateOfBirth"
+                                                           placeholder="01-01-2000">
+                                                    <span th:if="${#fields.hasErrors('dateOfBirth')}"
+                                                          th:errors="*{dateOfBirth}" style="color: red"></span>
+                                                    <label class="form-label" for="inputDateOfBirth">Date of birth</label>
+                                                </div>
+                                                <p class = "mb-2"><button class="btn btn-outline-light btn-lg px-5" type="submit">Submit</button></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="inputPassword" class="form-label">
-                    Input password
-                </label>
-                <input type="password" th:field="*{password}" class="form-control" id="inputPassword"
-                       placeholder="password">
-                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></span>
-            </div>
-            <div class="mb-3">
-                <label for="inputFirstName" class="form-label">
-                    Input your first name
-                </label>
-                <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName"
-                       placeholder="first name">
-                <span th:if="${#fields.hasErrors('firstName')}"
-                      th:errors="*{firstName}" style="color: red"></span>
-            </div>
-            <div class="mb-3">
-                <label for="inputSecondName" class="form-label">
-                    Input your second name
-                </label>
-                <input type="text" th:field="*{secondName}" class="form-control" id="inputSecondName"
-                       placeholder="second name">
-                <span th:if="${#fields.hasErrors('secondName')}"
-                      th:errors="*{secondName}" style="color: red"></span>
-            </div>
-            <div class="mb-3">
-                <label for="inputPatronymic" class="form-label">
-                    Input your patronymic
-                </label>
-                <input type="text" th:field="*{patronymic}" class="form-control" id="inputPatronymic"
-                       placeholder="patronymic">
-                <span th:if="${#fields.hasErrors('patronymic')}"
-                      th:errors="*{patronymic}" style="color: red"></span>
-            </div>
-            <div class="mb-3">
-                <label for="inputAddress" class="form-label">
-                    Input your address
-                </label>
-                <input type="text" th:field="*{address}" class="form-control" id="inputAddress"
-                       placeholder="address">
-                <span th:if="${#fields.hasErrors('address')}"
-                      th:errors="*{address}" style="color: red"></span>
-            </div>
-            <div class="mb-3">
-                <label for="inputPhone" class="form-label">
-                    Input your phone number
-                </label>
-                <input type="text" th:field="*{phone}" class="form-control" id="inputPhone"
-                       placeholder="+00(00)-00-00-000">
-
-                <span th:if="${#fields.hasErrors('phone')}"
-                      th:errors="*{phone}" style="color: red"></span>
-            </div>
-            <div class="mb-3">
-                <label for="inputDateOfBirth" class="form-label">
-                    Input your date of birth
-                </label>
-                <input type="date" th:field="*{dateOfBirth}" class="form-control" id="inputDateOfBirth"
-                       placeholder="01-01-2000">
-                <span th:if="${#fields.hasErrors('dateOfBirth')}"
-                      th:errors="*{dateOfBirth}" style="color: red"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit
-            </button>
-        </form>
-    </div>
+        </div>
+    </section>
+    <!-- end signup section -->
 </div>
+<!-- footer section -->
+<div th:insert="footer.html"></div>
+<!-- footer section -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
